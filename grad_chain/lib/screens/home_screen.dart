@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:grad_chain/screens/login_screen.dart';
+import 'package:grad_chain/screens/signup_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -57,13 +59,25 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(height: 40),
           Container(
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              //login
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                  );
+                },
                 child: Text('Log In'),
               ),
               SizedBox(width: 30),
+              //sign up
               OutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignupScreen()),
+                  );
+                },
                 child: Text('Sign Up'),
               ),
             ]),
