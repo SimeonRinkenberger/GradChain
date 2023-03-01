@@ -113,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                //mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
                     child: Divider(
@@ -128,37 +128,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(color: Colors.grey[700]),
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const SizedBox(width: 4),
-                      GestureDetector(
-                        onTap: NavigateToSignUp,
-                        child: Container(
-                          //padding: const EdgeInsets.symmetric(
-                          //  vertical: 8,
-                          //  horizontal: 4,
-                          //),
-                          child: const Text(
-                            "Sign up",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.blue,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                  Expanded(
+                    child: Divider(
+                      thickness: 0.5,
+                      color: Colors.grey[400],
+                    ),
                   ),
                 ],
               ),
             ),
-            Expanded(
-              child: Divider(
-                thickness: 0.5,
-                color: Colors.grey[400],
-              ),
-            ),
+
             /*Container(
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,
@@ -171,7 +150,26 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(
               height: 24,
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(width: 4),
+                GestureDetector(
+                  onTap: NavigateToSignUp,
+                  child: const Text(
+                    "Sign up",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+              ],
+            ),
 
+            const SizedBox(
+              height: 24,
+            ),
             // button for login
             InkWell(
               onTap: loginUser,

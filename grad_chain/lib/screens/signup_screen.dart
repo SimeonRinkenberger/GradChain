@@ -220,38 +220,53 @@ class _SignupScreenState extends State<SignupScreen> {
             const SizedBox(
               height: 12,
             ),
+
             Flexible(
               child: Container(),
               flex: 2,
             ),
+
             // transitioning to sign up
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Expanded(
+                  child: Divider(
+                    thickness: 0.5,
+                    color: Colors.grey[400],
+                  ),
+                ),
                 Container(
                   padding: const EdgeInsets.symmetric(
                     vertical: 12,
                   ),
                   child: const Text("Already have an account?"),
                 ),
-                GestureDetector(
-                  onTap: NavigateToLogin,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 12,
-                      horizontal: 4,
-                    ),
-                    child: const Text(
-                      "Log in",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.lightBlueAccent,
-                      ),
-                    ),
+                Expanded(
+                  child: Divider(
+                    thickness: 0.5,
+                    color: Colors.grey[400],
                   ),
                 ),
               ],
-            )
+            ),
+
+            GestureDetector(
+              onTap: NavigateToLogin,
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12,
+                  horizontal: 4,
+                ),
+                child: const Text(
+                  "Log in",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.lightBlueAccent,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       )),
