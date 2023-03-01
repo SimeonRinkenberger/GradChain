@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Instagram clone',
-        theme: ThemeData.dark()
+        theme: ThemeData.light()
             .copyWith(scaffoldBackgroundColor: mobileBackgroundColor),
         // const because we are not going to have dynamic values passed to the constructor
 
