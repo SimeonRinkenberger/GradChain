@@ -99,17 +99,16 @@ class _SignupScreenState extends State<SignupScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Flexible(
-              child: Container(),
-              flex: 2,
-            ),
-            // svg image (we use a package called flutter_svg to show svg images)
-            const Icon(
-              Icons.lock,
-              size: 100,
-            ),
-
-            const SizedBox(height: 50),
+            // Flexible(
+            //   child: Container(),
+            //   flex: 2,
+            // ),
+            // // svg image (we use a package called flutter_svg to show svg images)
+            // const Icon(
+            //   Icons.lock,
+            //   size: 100,
+            // ),
+            // const SizedBox(height: 50),
 
             Text(
               'Let\'s get you signed up!',

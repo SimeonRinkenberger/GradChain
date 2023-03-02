@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             //Block Chain For Deplomas
             Text(
-              'Blockchain For Deplomas',
+              'Blockchain For Diplomas',
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.w700,

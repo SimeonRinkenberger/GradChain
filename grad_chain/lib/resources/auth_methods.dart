@@ -11,12 +11,12 @@ class AuthMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<model.User> getUserDetails() async {
-    User? currentUser = _auth.currentUser;
+    User currentUser = _auth.currentUser!;
 
-    DocumentSnapshot snap =
-        await _firestore.collection('users').doc(currentUser?.uid).get();
+    DocumentSnapshot documentSnapshot =
+        await _firestore.collection('users').doc(currentUser.uid).get();
 
-    return model.User.fromSnap(snap);
+    return model.User.fromSnap(documentSnapshot);
   }
 
   // sign up user function
@@ -47,9 +47,7 @@ class AuthMethods {
           username: username,
           uid: cred.user!.uid,
           email: email,
-          bio: '',
-          followers: [],
-          following: [],
+          bio: bio,
           photoUrl: photoUrl,
         );
 
