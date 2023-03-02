@@ -14,7 +14,10 @@ import '../utils/colors.dart';
 import '../widgets/text_field_input.dart';
 
 class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
+  //final Function()? onTap;
+  const SignupScreen({
+    super.key,
+  });
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();
@@ -88,6 +91,7 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       body: SafeArea(
           child: Container(
         padding: EdgeInsets.symmetric(horizontal: 32),
@@ -95,15 +99,23 @@ class _SignupScreenState extends State<SignupScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Flexible(
-              child: Container(),
-              flex: 2,
-            ),
-            // svg image (we use a package called flutter_svg to show svg images)
-            SvgPicture.asset(
-              'assets/ic_instagram.svg',
-              color: primaryColor,
-              height: 64,
+            // Flexible(
+            //   child: Container(),
+            //   flex: 2,
+            // ),
+            // // svg image (we use a package called flutter_svg to show svg images)
+            // const Icon(
+            //   Icons.lock,
+            //   size: 100,
+            // ),
+            // const SizedBox(height: 50),
+
+            Text(
+              'Let\'s get you signed up!',
+              style: TextStyle(
+                color: Colors.grey[700],
+                fontSize: 42,
+              ),
             ),
             const SizedBox(height: 64),
             // circular widget to accept and show our selected file
@@ -182,7 +194,14 @@ class _SignupScreenState extends State<SignupScreen> {
                           color: primaryColor,
                         ),
                       )
-                    : const Text('Sign up'),
+                    : const Text(
+                        'Sign up',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
                 width: double.infinity,
                 alignment: Alignment.center,
                 padding: const EdgeInsets.symmetric(vertical: 12),
@@ -192,7 +211,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       Radius.circular(4),
                     ),
                   ),
-                  color: blueColor,
+                  color: Colors.black,
                 ),
               ),
             ),
@@ -210,20 +229,22 @@ class _SignupScreenState extends State<SignupScreen> {
               children: [
                 Container(
                   padding: const EdgeInsets.symmetric(
-                    vertical: 8,
+                    vertical: 12,
                   ),
-                  child: const Text("Don't have an account?"),
+                  child: const Text("Already have an account?"),
                 ),
                 GestureDetector(
                   onTap: NavigateToLogin,
                   child: Container(
                     padding: const EdgeInsets.symmetric(
-                      vertical: 8,
+                      vertical: 12,
+                      horizontal: 4,
                     ),
                     child: const Text(
-                      "Login",
+                      "Log in",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
+                        color: Colors.lightBlueAccent,
                       ),
                     ),
                   ),

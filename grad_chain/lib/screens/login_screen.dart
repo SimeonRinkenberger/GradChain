@@ -68,6 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       body: SafeArea(
           child: Container(
         padding: EdgeInsets.symmetric(horizontal: 32),
@@ -80,11 +81,14 @@ class _LoginScreenState extends State<LoginScreen> {
               flex: 2,
             ),
             // svg image (we use a package called flutter_svg to show svg images)
-            SvgPicture.asset(
-              'assets/ic_instagram.svg',
-              color: primaryColor,
-              height: 64,
+            Text(
+              'GradChain',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 68,
+              ),
             ),
+
             const SizedBox(height: 64),
             // text input for email
             TextFieldInput(
@@ -105,6 +109,69 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(
               height: 24,
             ),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Divider(
+                      thickness: 0.5,
+                      color: Colors.grey[400],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Text(
+                      'Are you new here? Create an account below.',
+                      style: TextStyle(color: Colors.grey[700]),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(width: 4),
+                      GestureDetector(
+                        onTap: NavigateToSignUp,
+                        child: Container(
+                          //padding: const EdgeInsets.symmetric(
+                          //  vertical: 8,
+                          //  horizontal: 4,
+                          //),
+                          child: const Text(
+                            "Sign up",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Divider(
+                thickness: 0.5,
+                color: Colors.grey[400],
+              ),
+            ),
+            /*Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8,
+                    ),
+                    child: const Text("Are you new here?"),
+                  ),
+            */
+            // Sign Up text at the bottom of the screen
+
+            const SizedBox(
+              height: 24,
+            ),
+
             // button for login
             InkWell(
               onTap: loginUser,
@@ -115,7 +182,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: primaryColor,
                         ),
                       )
-                    : const Text('Log in'),
+                    : const Text('Log in',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        )),
                 width: double.infinity,
                 alignment: Alignment.center,
                 padding: const EdgeInsets.symmetric(vertical: 12),
@@ -125,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Radius.circular(4),
                     ),
                   ),
-                  color: blueColor,
+                  color: Colors.black,
                 ),
               ),
             ),
@@ -138,33 +210,6 @@ class _LoginScreenState extends State<LoginScreen> {
               flex: 2,
             ),
             // transitioning to sign up
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 8,
-                  ),
-                  child: const Text("Don't have an account?"),
-                ),
-
-                // Sign Up text at the bottom of the screen
-                GestureDetector(
-                  onTap: NavigateToSignUp,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 8,
-                    ),
-                    child: const Text(
-                      "Sign up",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            )
           ],
         ),
       )),
