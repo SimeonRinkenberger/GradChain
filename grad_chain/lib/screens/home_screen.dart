@@ -13,7 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 23, 67, 24),
+      backgroundColor: Color.fromARGB(255, 219, 222, 219),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -23,19 +23,11 @@ class _HomeScreenState extends State<HomeScreen> {
               child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 //Grad Chain
-                Icon(
-                  Icons.circle_sharp,
-                  color: Colors.green[200],
-                ),
-                SizedBox(
-                  width: 3,
-                ),
-                Text(
-                  'GradChain',
-                  style: TextStyle(
-                    fontSize: 70,
-                    fontWeight: FontWeight.bold,
-                  ),
+                Image.asset(
+                  'assets/images/gradchain_logo.png',
+                  height: 250,
+                  width: 450,
+                  fit: BoxFit.fitWidth,
                 ),
               ]),
             ),
