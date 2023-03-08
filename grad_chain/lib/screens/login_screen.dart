@@ -81,12 +81,11 @@ class _LoginScreenState extends State<LoginScreen> {
               flex: 2,
             ),
             // svg image (we use a package called flutter_svg to show svg images)
-            Text(
-              'GradChain',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 68,
-              ),
+            Image.asset(
+              'assets/images/gradchain_logo.png',
+              height: 250,
+              width: 450,
+              fit: BoxFit.fitWidth,
             ),
 
             const SizedBox(height: 64),
