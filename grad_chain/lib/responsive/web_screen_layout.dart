@@ -35,23 +35,30 @@ class _WebScreenLayoutState extends State<WebScreenLayout> {
 
   @override
   Widget build(BuildContext context) {
-    model.User? user = Provider.of<UserProvider>(context).getUser;
+    final model.User? user = Provider.of<UserProvider>(context).getUser;
 
     return user == null
         ? const Center(
             child: CircularProgressIndicator(),
           )
         : user.photoUrl == null
-            ? Center(child: Text(user.username))
+            ? Center(
+                child: Text(
+                user.username,
+                style: TextStyle(color: Colors.white),
+              ))
             : Scaffold(
                 body: Center(
-                  child: Text(user.username),
+                  child: Text(
+                    user.username,
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               );
 
     // return Scaffold(
     //   body: Center(
-    //     child: Text(user!.username),
+    //     child: Text('This is web'),
     //   ),
     // );
   }

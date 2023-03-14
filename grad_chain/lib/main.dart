@@ -4,6 +4,7 @@ import 'package:grad_chain/providers/user_provider.dart';
 import 'package:grad_chain/responsive/mobile_screen_layout.dart';
 import 'package:grad_chain/responsive/responsive_layout_screen.dart';
 import 'package:grad_chain/responsive/web_screen_layout.dart';
+import 'package:grad_chain/screens/home_screen.dart';
 import 'package:grad_chain/screens/login_screen.dart';
 import 'package:grad_chain/screens/signup_screen.dart';
 import 'package:grad_chain/utils/colors.dart';
@@ -16,11 +17,11 @@ void main() async {
   if (kIsWeb) {
     await Firebase.initializeApp(
       options: const FirebaseOptions(
-        apiKey: "AIzaSyDX4nN-wj3H8QJTR1PzcNBHa1DOw0S-7tQ",
-        appId: "1:958045716239:web:dc29447388ce5752ba887a",
-        messagingSenderId: "958045716239",
-        projectId: "instagram-clone-d1b79",
-        storageBucket: "instagram-clone-d1b79.appspot.com",
+        apiKey: "AIzaSyD5Q8j1VUY3nIN7Ab5xfwb_Av6ST1Ulcr4",
+        appId: "1:809839028096:web:aea8e019dabd96312e4365",
+        messagingSenderId: "809839028096",
+        projectId: "gradchain-55ffd",
+        storageBucket: "gradchain-55ffd.appspot.com",
       ),
     );
   } else {
@@ -47,8 +48,8 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Instagram clone',
-        theme: ThemeData.dark()
+        title: 'GradChain',
+        theme: ThemeData.light()
             .copyWith(scaffoldBackgroundColor: mobileBackgroundColor),
         // const because we are not going to have dynamic values passed to the constructor
 
@@ -78,7 +79,7 @@ class MyApp extends StatelessWidget {
               );
             }
 
-            return const LoginScreen();
+            return const HomeScreen();
           },
         ),
       ),
