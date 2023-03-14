@@ -1,0 +1,1 @@
+This is the code for the blockchain in the flutter web app GradChain

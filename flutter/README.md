@@ -1,0 +1,1 @@
+This is the flutter web app code for the GradChain project. 
