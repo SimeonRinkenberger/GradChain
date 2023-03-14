@@ -41,6 +41,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       // We use this setup because as the app gets bigger there will be more providers
       providers: [
+        // The ChangeNotifierProvider works as the listener, when notifyListeners()
+        //is run it tells ChangeNotifierProvider that something has been changed,
+        //in this case the user has been refreshed
         ChangeNotifierProvider(
           // this is provided by the provider package
           create: (_) => UserProvider(),
