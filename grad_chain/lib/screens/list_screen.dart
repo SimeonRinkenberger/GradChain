@@ -25,7 +25,7 @@ class _ListScreenState extends State<ListScreen>{
     final storageRef = FirebaseStorage.instance.ref();
 
 // Create a reference to "mountains.jpg"
-    final mountainsRef = storageRef.child("mountains.jpg");
+    final mountainsRef = storageRef.child("mountains.jpg"); //TODO alter to allow user to pick files.
 
 // Create a reference to 'images/mountains.jpg'
     final mountainImagesRef = storageRef.child("images/mountains.jpg");
@@ -43,6 +43,7 @@ class _ListScreenState extends State<ListScreen>{
   void returnToPrevious(){
     //TODO: Add a way to return to the previous menu, assuming that this isn't a tab.
   }
+
 
 
 
