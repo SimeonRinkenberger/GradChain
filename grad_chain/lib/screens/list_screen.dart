@@ -29,11 +29,23 @@ class _ListScreenState extends State<ListScreen>{
   }
 
 
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Color.fromARGB(255, 23, 67, 24)
-            //TODO: Finish Implementation
+    return const Scaffold(
+        backgroundColor: Color.fromARGB(255, 23, 67, 24),
+        body: const Column( //TODO: Something's broken here, and I don't know what.
+          children:[
+            Text(
+              'No files found',
+              style: TextStyle(
+                fontSize: 70,
+                fontWeight: FontWeight.bold,
+        )
+            )
+          ]
+        )
+      //TODO: Finish Implementation
     );
     throw UnimplementedError();
   }
