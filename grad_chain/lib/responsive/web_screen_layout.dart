@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:grad_chain/providers/user_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:grad_chain/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:grad_chain/models/user.dart' as model;
 
@@ -33,26 +34,46 @@ class _WebScreenLayoutState extends State<WebScreenLayout> {
   //   });
   // }
 
+  Future NavigateTo(int cli_type) {
+    switch (cli_type) {
+      case 0:
+        break;
+      case 1:
+        break;
+      case 2:
+        break;
+      default:
+    }
+    return Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const HomeScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final model.User? user = Provider.of<UserProvider>(context).getUser;
+
+    switch (user?.cli_type) {
+      case 0:
+        break;
+      case 1:
+        break;
+      case 2:
+        break;
+      default:
+    }
 
     return user == null
         ? const Center(
             child: CircularProgressIndicator(),
           )
         : user.photoUrl == null
-            ? Center(
-                child: Text(
-                user.username,
-                style: TextStyle(color: Colors.white),
-              ))
+            ? Center(child: Text(user.username))
             : Scaffold(
                 body: Center(
-                  child: Text(
-                    user.username,
-                    style: TextStyle(color: Colors.white),
-                  ),
+                  child: Text(user.username),
                 ),
               );
 
