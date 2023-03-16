@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grad_chain/screens/login_screen.dart';
 import 'package:grad_chain/screens/signup_screen.dart';
+import 'package:grad_chain/screens/list_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -86,6 +87,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   child: Text('Sign Up'),
                 ),
+                OutlinedButton(
+                      onPressed: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ListScreen()),
+                        );
+                      },
+                    child: Text('Go to List Screen') //TODO: To be removed after navigation is finished.
+                    ),
               ]),
             ),
           ),
