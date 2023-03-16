@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:grad_chain/utils/colors.dart';
 import 'package:grad_chain/utils/utils.dart';
@@ -17,6 +18,22 @@ class ListScreen extends StatefulWidget{
 class _ListScreenState extends State<ListScreen>{
   void displayDiplomas(){
     //TODO: Figure out a way to display a list of diplomas on screen.
+  }
+
+  void uploadFiles(){
+    // Create a storage reference from our app
+    final storageRef = FirebaseStorage.instance.ref();
+
+// Create a reference to "mountains.jpg"
+    final mountainsRef = storageRef.child("mountains.jpg");
+
+// Create a reference to 'images/mountains.jpg'
+    final mountainImagesRef = storageRef.child("images/mountains.jpg");
+
+// While the file names are the same, the references point to different files
+    assert(mountainsRef.name == mountainImagesRef.name);
+    assert(mountainsRef.fullPath != mountainImagesRef.fullPath);
+    //TODO: Rewrite above code so as to allow the uploading of .csv files
   }
 
   void filter(){
