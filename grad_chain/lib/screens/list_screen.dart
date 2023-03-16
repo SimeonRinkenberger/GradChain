@@ -1,4 +1,3 @@
-//TODO: Add a way to access this screen from existing screens.
 import 'package:flutter/material.dart';
 import 'package:grad_chain/utils/colors.dart';
 import 'package:grad_chain/utils/utils.dart';
