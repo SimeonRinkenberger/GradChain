@@ -32,9 +32,9 @@ class _ListScreenState extends State<ListScreen>{
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
         backgroundColor: Color.fromARGB(255, 23, 67, 24),
-        body: const Column( //TODO: Something's broken here, and I don't know what.
+        body: Column(
           children:[
             Text(
               'No files found',
