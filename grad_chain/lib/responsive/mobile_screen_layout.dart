@@ -1,3 +1,4 @@
+import 'package:clipboard/clipboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:grad_chain/providers/user_provider.dart';
@@ -60,11 +61,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                         child: ListTile(
                           leading: OutlinedButton(
                             onPressed: () {
-                              Navigator.push(
-                                context as BuildContext,
-                                MaterialPageRoute(
-                                    builder: (context) => HomeScreen()),
-                              );
+                              FlutterClipboard.copy('www.facebook.com');
                             },
                             child: Icon(Icons.share),
                           ),
