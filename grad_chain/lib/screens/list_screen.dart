@@ -1,5 +1,6 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
 import 'package:grad_chain/utils/colors.dart';
 import 'package:grad_chain/utils/utils.dart';
 
@@ -20,7 +21,7 @@ class _ListScreenState extends State<ListScreen>{
     //TODO: Figure out a way to display a list of diplomas on screen.
   }
 
-  void uploadFiles(){
+  /*void uploadFiles(){
     // Create a storage reference from our app
     final storageRef = FirebaseStorage.instance.ref();
 
@@ -34,10 +35,15 @@ class _ListScreenState extends State<ListScreen>{
     assert(mountainsRef.name == mountainImagesRef.name);
     assert(mountainsRef.fullPath != mountainImagesRef.fullPath);
     //TODO: Rewrite above code so as to allow the uploading of .csv files
-  }
+  }*/
 
-  void filter(){
-    //TODO: add a filter function. Subject to possible removal.
+  Future<List<File>> listFiles(String directoryPath) async{
+    final dir = Directory(directoryPath);
+    if(!(await dir.exists())){
+      throw Exception('Directory does not exist');
+    }
+    final files = await dir.list().where((entity) => entity is File).map((entity) => entity as File).toList();
+    return files;
   }
 
   void returnToPrevious(){
@@ -51,7 +57,7 @@ class _ListScreenState extends State<ListScreen>{
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 23, 67, 24),
-        body: Column(
+        body: ListView(
           children:[
             Text(
               'No files found',
