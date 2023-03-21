@@ -1,6 +1,6 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
+import 'dart:html';
 import 'package:grad_chain/utils/colors.dart';
 import 'package:grad_chain/utils/utils.dart';
 
@@ -25,14 +25,21 @@ class ListScreen extends StatefulWidget{
 
 class _ListScreenState extends State<ListScreen>{
 
+  late List<Reference> _files;
 
-  Future<List<File>> listFiles(String directoryPath) async{
-    final dir = Directory(directoryPath);
-    if(!(await dir.exists())){
-      throw Exception('Directory does not exist');
-    }
-    final files = await dir.list().where((entity) => entity is File).map((entity) => entity as File).toList();
-    return files;
+  @override
+  void initState() {
+    super.initState();
+    _listFiles;
+  }
+
+  Future<void> _listFiles() async{
+    final storage = FirebaseStorage.instance;
+    final dir = storage.ref(widget.directoryPath);
+    final files = await dir.listAll();
+    setState(() {
+      _files = files.items;
+    });
   }
 
   void returnToPrevious(){
