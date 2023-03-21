@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: (){
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ListScreen()),
+                          MaterialPageRoute(builder: (context) => ListScreen(directoryPath: '/GradChain/')),
                         );
                       },
                     child: Text('Go to List Screen') //TODO: To be removed after navigation is finished.
