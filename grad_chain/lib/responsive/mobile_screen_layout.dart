@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:grad_chain/models/user.dart' as model;
 
 import '../screens/home_screen.dart';
+import '../utils/claim_widget.dart';
 import '../utils/my_box.dart';
 import '../utils/my_title.dart';
 import 'constrants.dart';
@@ -99,7 +100,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                     children: [
                       // first 4 boxes in grid
                       AspectRatio(
-                        aspectRatio: 8 / 7,
+                        aspectRatio: 8 / 5,
                         child: SizedBox(
                           width: double.infinity,
                           child: GridView.builder(
@@ -116,14 +117,8 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
 
                       // Notifications
 
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: 5,
-                          itemBuilder: (context, index) {
-                            return const MyTile();
-                          },
-                        ),
-                      ),
+                      SizedBox(height: 15),
+                      Expanded(child: AcceptRemoveList()),
                     ],
                   ),
                 ),
