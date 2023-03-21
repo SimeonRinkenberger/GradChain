@@ -23,9 +23,9 @@ class ListScreen extends StatefulWidget{
   State<ListScreen> createState() => _ListScreenState();
 }
 
-class _ListScreenState extends State<ListScreen>{
+class _ListScreenState extends State<ListScreen> {
 
-  late List<Reference> _files;
+  List<Reference> _files = [];
 
   @override
   void initState() {
@@ -33,7 +33,7 @@ class _ListScreenState extends State<ListScreen>{
     _listFiles;
   }
 
-  Future<void> _listFiles() async{
+  Future<void> _listFiles() async {
     final storage = FirebaseStorage.instance;
     final dir = storage.ref(widget.directoryPath);
     final files = await dir.listAll();
@@ -42,35 +42,38 @@ class _ListScreenState extends State<ListScreen>{
     });
   }
 
-  void returnToPrevious(){
+  void returnToPrevious() {
     //TODO: Add a way to return to the previous menu, assuming that this isn't a tab.
   }
 
 
-
-
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<File>>(
-      future: listFiles(widget.directoryPath),
-      builder: (BuildContext context, AsyncSnapshot<List<File>> snapshot) {
-        if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-          final files = snapshot.data!;
-          return ListView.builder(
-            itemCount: files.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ListTile(
-                title: Text(files[index].path),
-              );
-            },
-          );
-        } else if (snapshot.hasError) {
-          return Text("Error: ${snapshot.error}");
-        } else {
-          return CircularProgressIndicator();
-        }
-      },
+    return Scaffold(
+        appBar: AppBar(title: Text(widget.directoryPath)),
+        body: _buildBody()
     );
   }
 
+  Widget _buildBody() {
+    if (_files == null) {
+      return Center(child: CircularProgressIndicator());
+    } else if (_files.isEmpty) {
+      return Center(child: Text('No files found.'));
+    } else {
+      return ListView.builder(
+        itemCount: _files.length,
+        itemBuilder: (BuildContext context, int index) {
+          final file = _files[index];
+          return ListTile(
+            title: Text(file.name),
+            trailing: Icon(Icons.arrow_forward),
+            onTap: () {
+              //TODO: Add code to navigate to the file details screen.
+            },
+          );
+        },
+      );
+    }
+  }
 }
