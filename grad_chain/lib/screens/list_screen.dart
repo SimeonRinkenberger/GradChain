@@ -9,33 +9,21 @@ import '../responsive/responsive_layout_screen.dart';
 import '../responsive/web_screen_layout.dart';
 
 class ListScreen extends StatefulWidget{
-  const ListScreen(
+  final String directoryPath;
+
+  ListScreen({required this.directoryPath});
+
+
+
+ /* const ListScreen(
   {super.key}
-      );
+      );*/
   @override
   State<ListScreen> createState() => _ListScreenState();
 }
 
 class _ListScreenState extends State<ListScreen>{
-  void displayDiplomas(){
-    //TODO: Figure out a way to display a list of diplomas on screen.
-  }
 
-  /*void uploadFiles(){
-    // Create a storage reference from our app
-    final storageRef = FirebaseStorage.instance.ref();
-
-// Create a reference to "mountains.jpg"
-    final mountainsRef = storageRef.child("mountains.jpg"); //TODO alter to allow user to pick files.
-
-// Create a reference to 'images/mountains.jpg'
-    final mountainImagesRef = storageRef.child("images/mountains.jpg");
-
-// While the file names are the same, the references point to different files
-    assert(mountainsRef.name == mountainImagesRef.name);
-    assert(mountainsRef.fullPath != mountainImagesRef.fullPath);
-    //TODO: Rewrite above code so as to allow the uploading of .csv files
-  }*/
 
   Future<List<File>> listFiles(String directoryPath) async{
     final dir = Directory(directoryPath);
@@ -55,22 +43,26 @@ class _ListScreenState extends State<ListScreen>{
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Color.fromARGB(255, 23, 67, 24),
-        body: ListView(
-          children:[
-            Text(
-              'No files found',
-              style: TextStyle(
-                fontSize: 70,
-                fontWeight: FontWeight.bold,
-        )
-            )
-          ]
-        )
-      //TODO: Finish Implementation
+    return FutureBuilder<List<File>>(
+      future: listFiles(widget.directoryPath),
+      builder: (BuildContext context, AsyncSnapshot<List<File>> snapshot) {
+        if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
+          final files = snapshot.data!;
+          return ListView.builder(
+            itemCount: files.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ListTile(
+                title: Text(files[index].path),
+              );
+            },
+          );
+        } else if (snapshot.hasError) {
+          return Text("Error: ${snapshot.error}");
+        } else {
+          return CircularProgressIndicator();
+        }
+      },
     );
-    throw UnimplementedError();
   }
 
 }
