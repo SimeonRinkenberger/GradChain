@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:grad_chain/providers/user_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:grad_chain/utils/claim_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:grad_chain/models/user.dart' as model;
 
@@ -9,6 +10,7 @@ import '../screens/home_screen.dart';
 import '../utils/my_box.dart';
 import '../utils/my_title.dart';
 import 'constrants.dart';
+import 'package:grad_chain/utils/claim_widget.dart';
 
 class WebScreenLayout extends StatefulWidget {
   const WebScreenLayout({super.key});
@@ -126,9 +128,8 @@ class _WebScreenLayoutState extends State<WebScreenLayout> {
 
                       // first half of page
                       Expanded(
-                        flex: 2,
-                        child: Column(
-                          children: [
+                          flex: 2,
+                          child: Column(children: [
                             // first 4 boxes in grid
                             AspectRatio(
                               aspectRatio: 16 / 6,
@@ -144,8 +145,9 @@ class _WebScreenLayoutState extends State<WebScreenLayout> {
                               ),
                             ),
 
+                            /* Keeping this while I wait for a response */
                             // list of previous days
-                            Expanded(
+                            /*Expanded(
                               child: ListView.builder(
                                 itemCount: 7,
                                 itemBuilder: (context, index) {
@@ -153,38 +155,50 @@ class _WebScreenLayoutState extends State<WebScreenLayout> {
                                 },
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                      // second half of page
-                      // Expanded(
-                      //   child: Column(
-                      //     children: [
-                      //       Padding(
-                      //         padding: const EdgeInsets.all(8.0),
-                      //         child: Container(
-                      //           height: 400,
-                      //           decoration: BoxDecoration(
-                      //             borderRadius: BorderRadius.circular(8),
-                      //             color: Colors.grey[400],
-                      //           ),
-                      //         ),
-                      //       ),
-                      //       // list of stuff
-                      //       Expanded(
-                      //         child: Padding(
-                      //           padding: const EdgeInsets.all(8.0),
-                      //           child: Container(
-                      //             decoration: BoxDecoration(
-                      //               borderRadius: BorderRadius.circular(8),
-                      //               color: Colors.grey[200],
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
+                            */
+
+                            SizedBox(height: 15),
+                            Expanded(child: AcceptRemoveList()),
+
+                            Expanded(
+                                child: ListView.builder(
+                                    itemCount: 7,
+                                    itemBuilder: (context, index) {
+                                      return MyTile();
+                                    })),
+
+                            SizedBox(height: 10),
+
+                            // second half of page
+                            // Expanded(
+                            //   child: Column(
+                            //     children: [
+                            //       Padding(
+                            //         padding: const EdgeInsets.all(8.0),
+                            //         child: Container(
+                            //           height: 400,
+                            //           decoration: BoxDecoration(
+                            //             borderRadius: BorderRadius.circular(8),
+                            //             color: Colors.grey[400],
+                            //           ),
+                            //         ),
+                            //       ),
+                            //       // list of stuff
+                            //       Expanded(
+                            //         child: Padding(
+                            //           padding: const EdgeInsets.all(8.0),
+                            //           child: Container(
+                            //             decoration: BoxDecoration(
+                            //               borderRadius: BorderRadius.circular(8),
+                            //               color: Colors.grey[200],
+                            //             ),
+                            //           ),
+                            //         ),
+                            //       ),
+                            //     ],
+                            //   ),
+                            // ),
+                          ]))
                     ],
                   ),
                 ),
