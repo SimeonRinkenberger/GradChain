@@ -5,6 +5,7 @@ import 'package:grad_chain/responsive/mobile_screen_layout.dart';
 import 'package:grad_chain/responsive/responsive_layout_screen.dart';
 import 'package:grad_chain/responsive/web_screen_layout.dart';
 import 'package:grad_chain/screens/home_screen.dart';
+import 'package:grad_chain/screens/landing_screen.dart';
 import 'package:grad_chain/screens/login_screen.dart';
 import 'package:grad_chain/screens/signup_screen.dart';
 import 'package:grad_chain/utils/colors.dart';
@@ -79,7 +80,7 @@ class MyApp extends StatelessWidget {
               );
             }
 
-            return const HomeScreen();
+            return const LandingScreen();
           },
         ),
       ),
