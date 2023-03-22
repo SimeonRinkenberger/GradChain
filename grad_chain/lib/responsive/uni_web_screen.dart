@@ -13,14 +13,14 @@ import '../utils/my_title.dart';
 import 'constrants.dart';
 import 'package:grad_chain/utils/claim_widget.dart';
 
-class WebScreenLayout extends StatefulWidget {
-  const WebScreenLayout({super.key});
+class UniWebScreen extends StatefulWidget {
+  const UniWebScreen({super.key});
 
   @override
-  State<WebScreenLayout> createState() => _WebScreenLayoutState();
+  State<UniWebScreen> createState() => _UniWebScreenState();
 }
 
-class _WebScreenLayoutState extends State<WebScreenLayout> {
+class _UniWebScreenState extends State<UniWebScreen> {
   // THIS CODE IS FOR TESTING GETTING USER DATA FROM FIRESTORE
   // String username = "";
 
@@ -106,7 +106,11 @@ class _WebScreenLayoutState extends State<WebScreenLayout> {
                               child: ListTile(
                                 leading: OutlinedButton(
                                   onPressed: () {
-                                    FlutterClipboard.copy('www.facebook.com');
+                                    Navigator.push(
+                                      context as BuildContext,
+                                      MaterialPageRoute(
+                                          builder: (context) => HomeScreen()),
+                                    );
                                   },
                                   child: Icon(Icons.logout),
                                 ),

@@ -12,14 +12,14 @@ import '../utils/my_box.dart';
 import '../utils/my_title.dart';
 import 'constrants.dart';
 
-class MobileScreenLayout extends StatefulWidget {
-  const MobileScreenLayout({super.key});
+class UniMobileScreen extends StatefulWidget {
+  const UniMobileScreen({super.key});
 
   @override
-  State<MobileScreenLayout> createState() => _MobileScreenLayoutState();
+  State<UniMobileScreen> createState() => _UniMobileScreenState();
 }
 
-class _MobileScreenLayoutState extends State<MobileScreenLayout> {
+class _UniMobileScreenState extends State<UniMobileScreen> {
   String username = "";
 
   @override

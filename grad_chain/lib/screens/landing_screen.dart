@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grad_chain/screens/home_screen.dart';
 import 'package:grad_chain/screens/login_screen.dart';
 import 'package:grad_chain/screens/signup_screen.dart';
+import 'package:grad_chain/screens/student_login_screen.dart';
 
 class LandingScreen extends StatefulWidget {
   const LandingScreen({Key? key}) : super(key: key);
@@ -74,7 +75,8 @@ class _LandingScreen extends State<LandingScreen> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => StudentLoginScreen()),
                     );
                   },
                   child: Text('Student'),
