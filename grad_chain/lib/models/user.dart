@@ -5,7 +5,7 @@ class User {
   final String uid;
   final String email;
   final String bio;
-  final String? photoUrl;
+  final String photoUrl;
   final int cli_type;
 
   const User({
