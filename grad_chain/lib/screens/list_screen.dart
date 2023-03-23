@@ -9,7 +9,6 @@ import '../responsive/responsive_layout_screen.dart';
 import '../responsive/web_screen_layout.dart';
 
 class ListScreen extends StatefulWidget{
-  //TODO: We're going to have to rewrite this to access files on the cloud rather than on a local machine.
   final String directoryPath;
 
   ListScreen({required this.directoryPath});
@@ -34,12 +33,19 @@ class _ListScreenState extends State<ListScreen> {
   }
 
   Future<void> _listFiles() async {
-    final storage = FirebaseStorage.instance;
-    final dir = storage.ref(widget.directoryPath);
-    final files = await dir.listAll();
-    setState(() {
-      _files = files.items;
-    });
+    try {
+      final storage = FirebaseStorage.instance;
+      final dir = storage.ref(widget.directoryPath);
+      final files = await dir.listAll();
+      setState(() {
+        _files = files.items;
+      });
+    } catch (e) {
+      print('Failed to list files: invalid directory$e');
+      setState(() {
+        _files = [];
+      });
+    }
   }
 
   void returnToPrevious() {
@@ -69,7 +75,16 @@ class _ListScreenState extends State<ListScreen> {
             title: Text(file.name),
             trailing: Icon(Icons.arrow_forward),
             onTap: () {
-              //TODO: Add code to navigate to the file details screen.
+              if (file.name.endsWith('/')) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>
+                      ListScreen(directoryPath: widget.directoryPath + file.name)
+                  ),
+                );
+              } else {
+                //TODO: Add functionality that is as of yet undecided.
+              }
             },
           );
         },
