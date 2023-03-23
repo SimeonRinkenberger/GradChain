@@ -83,7 +83,7 @@ class MyApp extends StatelessWidget {
               );
             }
 
-            return const LandingScreen();
+            return const LoginScreen();
           },
         ),
       ),

@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:grad_chain/providers/user_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:grad_chain/screens/add_diploma_screen.dart';
 import 'package:grad_chain/utils/claim_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:grad_chain/models/user.dart' as model;
@@ -45,107 +46,95 @@ class _UniWebScreenState extends State<UniWebScreen> {
   Widget build(BuildContext context) {
     final model.User? user = Provider.of<UserProvider>(context).getUser;
 
-    return user == null
-        ? const Center(
-            child: CircularProgressIndicator(),
-          )
-        : user.photoUrl == null
-            ? Center(
-                child: Text(
-                user.username,
-                style: TextStyle(color: Colors.white),
-              ))
+    return Scaffold(
+      backgroundColor: defaultBackgroundColor,
+      appBar: myAppBar,
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // open drawer
+            Drawer(
+              backgroundColor: Colors.grey[300],
+              elevation: 0,
+              width: 200,
+              child: Column(
+                children: [
+                  DrawerHeader(
+                    child: ListTile(
+                      leading: Icon(Icons.person),
+                      //leading: Image.network('${user.photoUrl}'),
+                      title: Text(
+                        //'hu',
+                        user!.username,
+                        style: drawerTextColor,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 300,
+                  ),
+                  Padding(
+                    padding: tilePadding,
+                    child: ListTile(
+                      leading: OutlinedButton(
+                        onPressed: () {
+                          FlutterClipboard.copy('${user.username}');
+                        },
+                        child: Icon(Icons.share),
+                      ),
+                      title: Text(
+                        'S H A R E',
+                        style: drawerTextColor,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: tilePadding,
+                    child: ListTile(
+                      leading: OutlinedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context as BuildContext,
+                            MaterialPageRoute(
+                                builder: (context) => HomeScreen()),
+                          );
+                        },
+                        child: Icon(Icons.logout),
+                      ),
+                      title: Text(
+                        'L O G O U T',
+                        style: drawerTextColor,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
 
-            //building the desktop profile layout
-            : Scaffold(
-                backgroundColor: defaultBackgroundColor,
-                appBar: myAppBar,
-                body: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // open drawer
-                      Drawer(
-                        backgroundColor: Colors.grey[300],
-                        elevation: 0,
-                        width: 200,
-                        child: Column(
-                          children: [
-                            DrawerHeader(
-                              child: ListTile(
-                                leading: Icon(Icons.person),
-                                //leading: Image.network('${user.photoUrl}'),
-                                title: Text(
-                                  //'hu',
-                                  user.username,
-                                  style: drawerTextColor,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 300,
-                            ),
-                            Padding(
-                              padding: tilePadding,
-                              child: ListTile(
-                                leading: OutlinedButton(
-                                  onPressed: () {
-                                    FlutterClipboard.copy('${user.username}');
-                                  },
-                                  child: Icon(Icons.share),
-                                ),
-                                title: Text(
-                                  'S H A R E',
-                                  style: drawerTextColor,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: tilePadding,
-                              child: ListTile(
-                                leading: OutlinedButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context as BuildContext,
-                                      MaterialPageRoute(
-                                          builder: (context) => HomeScreen()),
-                                    );
-                                  },
-                                  child: Icon(Icons.logout),
-                                ),
-                                title: Text(
-                                  'L O G O U T',
-                                  style: drawerTextColor,
-                                ),
-                              ),
-                            ),
-                          ],
+            // first half of page
+            Expanded(
+                flex: 2,
+                child: Column(children: [
+                  // first 4 boxes in grid
+                  AspectRatio(
+                    aspectRatio: 16 / 5.5,
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: Container(
+                        height: 400,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.grey[400],
                         ),
                       ),
+                    ),
+                  ),
 
-                      // first half of page
-                      Expanded(
-                          flex: 2,
-                          child: Column(children: [
-                            // first 4 boxes in grid
-                            AspectRatio(
-                              aspectRatio: 16 / 5.5,
-                              child: SizedBox(
-                                width: double.infinity,
-                                child: Container(
-                                  height: 400,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: Colors.grey[400],
-                                  ),
-                                ),
-                              ),
-                            ),
-
-                            /* Keeping this while I wait for a response */
-                            // list of previous days
-                            /*Expanded(
+                  /* Keeping this while I wait for a response */
+                  // list of previous days
+                  /*Expanded(
                               child: ListView.builder(
                                 itemCount: 7,
                                 itemBuilder: (context, index) {
@@ -155,21 +144,14 @@ class _UniWebScreenState extends State<UniWebScreen> {
                             ),
                             */
 
-                            SizedBox(height: 15),
-                            Expanded(child: AcceptRemoveList()),
+                  SizedBox(height: 15),
+                  Expanded(child: AcceptRemoveList()),
 
-                            // Expanded(
-                            //     child: ListView.builder(
-                            //         itemCount: 7,
-                            //         itemBuilder: (context, index) {
-                            //           return MyTile();
-                            //         })),
-
-                            SizedBox(height: 10),
-                          ]))
-                    ],
-                  ),
-                ),
-              );
+                  SizedBox(height: 10),
+                ]))
+          ],
+        ),
+      ),
+    );
   }
 }
