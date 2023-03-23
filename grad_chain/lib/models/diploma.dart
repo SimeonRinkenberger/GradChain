@@ -36,6 +36,7 @@ class Diploma {
   final String type;
   final String university;
   final int gpa;
+  // add a hash parameter
 
   const Diploma({
     required this.name,
