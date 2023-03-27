@@ -69,7 +69,7 @@ class _LandingScreen extends State<LandingScreen> {
                   },
                   child: Text('University'),
                 ),
-                SizedBox(width: 30),
+                SizedBox(width: 60),
                 //sign up
                 ElevatedButton(
                   onPressed: () {
@@ -80,18 +80,6 @@ class _LandingScreen extends State<LandingScreen> {
                     );
                   },
                   child: Text('Student'),
-                ),
-                SizedBox(
-                  width: 30,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
-                    );
-                  },
-                  child: Text('Employer'),
                 ),
               ]),
             ),
