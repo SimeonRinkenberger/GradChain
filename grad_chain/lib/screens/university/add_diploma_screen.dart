@@ -56,21 +56,21 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
         context: context,
         builder: (context) {
           return SimpleDialog(
-            title: const Text('Create a post'),
+            title: const Text('Upload a diploma'),
             children: [
               SimpleDialogOption(
-                padding: const EdgeInsets.all(20),
-                child: Text('Take a photo'),
-                onPressed: () async {
-                  Navigator.of(context).pop();
-                  Uint8List file = await pickImage(
-                    ImageSource.camera,
-                  );
-                  setState(() {
-                    _file = file;
-                  });
-                },
-              ),
+                  // padding: const EdgeInsets.all(20),
+                  // child: Text('Take a photo'),
+                  // onPressed: () async {
+                  //   Navigator.of(context).pop();
+                  //   Uint8List file = await pickImage(
+                  //     ImageSource.camera,
+                  //   );
+                  //   setState(() {
+                  //     _file = file;
+                  //   });
+                  // },
+                  ),
               SimpleDialogOption(
                 padding: const EdgeInsets.all(20),
                 child: Text('Choose from gallery'),
@@ -106,6 +106,7 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
+    // ADD ALL CONTROLLERS
     _descriptionController.dispose();
   }
 
@@ -117,7 +118,10 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
     return _file == null
         ? Center(
             child: IconButton(
-              icon: const Icon(Icons.upload),
+              icon: const Icon(
+                Icons.upload,
+                color: Colors.white,
+              ),
               onPressed: () => _selectImage(context),
             ),
           )
@@ -165,6 +169,7 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
                         user.photoUrl,
                       ),
                     ),
+                    // This is the description TextBox
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.3,
                       child: TextField(
@@ -175,6 +180,8 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
                         maxLines: 8,
                       ),
                     ),
+
+                    // IMAGE UPLOADED
                     SizedBox(
                       height: 45,
                       width: 45,
