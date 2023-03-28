@@ -1,25 +1,26 @@
 import 'package:grad_chain/resources/auth_methods.dart';
-import 'package:grad_chain/screens/signup_screen.dart';
+import 'package:grad_chain/responsive/university/uni_mobile_screen.dart';
+import 'package:grad_chain/responsive/university/uni_web_screen.dart';
+import 'package:grad_chain/screens/index/landing_screen.dart';
+import 'package:grad_chain/screens/index/signup_screen.dart';
 import 'package:grad_chain/utils/colors.dart';
 import 'package:grad_chain/utils/utils.dart';
 import 'package:grad_chain/widgets/text_field_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../responsive/uni_mobile_screen.dart';
-import '../responsive/responsive_layout_screen.dart';
-import '../responsive/uni_responsive_layout.dart';
-import '../responsive/uni_web_screen.dart';
-import '../responsive/web_screen_layout.dart';
+import '../../responsive/student/mobile_screen_layout.dart';
+import '../../responsive/index/responsive_layout_screen.dart';
+import '../../responsive/student/web_screen_layout.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class StudentLoginScreen extends StatefulWidget {
+  const StudentLoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<StudentLoginScreen> createState() => _StudentLoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _StudentLoginScreenState extends State<StudentLoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
@@ -44,9 +45,11 @@ class _LoginScreenState extends State<LoginScreen> {
     if (res == "success") {
       var push = Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const UniResponsiveLayout(
-            UniMobileScreen: UniMobileScreen(),
-            UniWebScreen: UniWebScreen(),
+          builder: (context) => const ResponsiveLayout(
+            mobileScreenLayout: MobileScreenLayout(),
+            webScreenLayout: WebScreenLayout(),
+            uniMobileScreenLayout: UniMobileScreen(),
+            uniWebScreenLayout: UniWebScreen(),
           ),
         ),
       );
@@ -59,10 +62,10 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  void NavigateToSignUp() {
+  void NavigateToLandingScreen() {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const SignupScreen(),
+        builder: (context) => const LandingScreen(),
       ),
     );
   }
@@ -134,14 +137,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       const SizedBox(width: 4),
                       GestureDetector(
-                        onTap: NavigateToSignUp,
+                        onTap: NavigateToLandingScreen,
                         child: Container(
                           //padding: const EdgeInsets.symmetric(
                           //  vertical: 8,
                           //  horizontal: 4,
                           //),
                           child: const Text(
-                            "Sign up",
+                            "Not a Student",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.blue,

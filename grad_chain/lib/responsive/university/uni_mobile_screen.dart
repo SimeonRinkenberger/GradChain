@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:grad_chain/models/user.dart' as model;
 
-import '../screens/home_screen.dart';
-import '../utils/claim_widget.dart';
-import '../utils/my_box.dart';
-import '../utils/my_title.dart';
-import 'constrants.dart';
+import '../../../screens/index/home_screen.dart';
+import '../../../utils/claim_widget.dart';
+import '../../../utils/my_box.dart';
+import '../../../utils/my_title.dart';
+import '../../../widgets/constrants.dart';
 
 class UniMobileScreen extends StatefulWidget {
   const UniMobileScreen({super.key});

@@ -41,9 +41,9 @@ class _ClaimCardState extends State<ClaimCard> {
                     Icons.check_box_outline_blank,
                   ),
             onPressed: () {
-              debugPrint(user.uid);
-              debugPrint(widget.snap['diplomaId']);
-              debugPrint(widget.snap['claimed'].toString());
+              // debugPrint(user.uid);
+              // debugPrint(widget.snap['diplomaId']);
+              // debugPrint(widget.snap['claimed'].toString());
               FirestoreMethods().claimDiploma(
                 widget.snap['diplomaId'],
                 user.uid,
