@@ -19,7 +19,12 @@ class AddDiplomaScreen extends StatefulWidget {
 
 class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
   Uint8List? _file;
-  final TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _descriptionController1 = TextEditingController();
+  final TextEditingController _descriptionController2 = TextEditingController();
+  final TextEditingController _descriptionController3 = TextEditingController();
+  final TextEditingController _descriptionController4 = TextEditingController();
+  final TextEditingController _descriptionController5 = TextEditingController();
+
   bool _isLoading = false;
 
   void postImage(
@@ -32,7 +37,7 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
     });
     try {
       String res = await FirestoreMethods().uploadDiploma(
-          _descriptionController.text, _file!, uid, username, profImage);
+          _descriptionController1.text, _file!, uid, username, profImage);
 
       if (res == 'success') {
         setState(() {
@@ -107,13 +112,17 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
     // TODO: implement dispose
     super.dispose();
     // ADD ALL CONTROLLERS
-    _descriptionController.dispose();
+    _descriptionController1.dispose();
+    _descriptionController2.dispose();
+    _descriptionController3.dispose();
+    _descriptionController4.dispose();
+    _descriptionController5.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final User user = Provider.of<UserProvider>(context).getUser;
-    debugPrint(user.bio);
+    debugPrint(user.photoUrl);
 
     return _file == null
         ? Center(
@@ -126,6 +135,7 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
             ),
           )
         : Scaffold(
+            backgroundColor: Colors.grey[300],
             appBar: AppBar(
               backgroundColor: mobileBackgroundColor,
               leading: IconButton(
@@ -169,16 +179,66 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
                         user.photoUrl,
                       ),
                     ),
+
                     // This is the description TextBox
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.3,
-                      child: TextField(
-                        controller: _descriptionController,
-                        decoration: const InputDecoration(
-                            hintText: 'Write a caption',
-                            border: InputBorder.none),
-                        maxLines: 8,
-                      ),
+                    Column(
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.3,
+                          height: MediaQuery.of(context).size.height * 0.10,
+                          child: TextField(
+                            controller: _descriptionController1,
+                            decoration: const InputDecoration(
+                                hintText: 'Write a caption',
+                                border: InputBorder.none),
+                            maxLines: 8,
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.3,
+                          height: MediaQuery.of(context).size.height * 0.10,
+                          child: TextField(
+                            controller: _descriptionController2,
+                            decoration: const InputDecoration(
+                                hintText: 'Write a caption',
+                                border: InputBorder.none),
+                            maxLines: 8,
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.3,
+                          height: MediaQuery.of(context).size.height * 0.10,
+                          child: TextField(
+                            controller: _descriptionController3,
+                            decoration: const InputDecoration(
+                                hintText: 'Write a caption',
+                                border: InputBorder.none),
+                            maxLines: 8,
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.3,
+                          height: MediaQuery.of(context).size.height * 0.10,
+                          child: TextField(
+                            controller: _descriptionController4,
+                            decoration: const InputDecoration(
+                                hintText: 'Write a caption',
+                                border: InputBorder.none),
+                            maxLines: 8,
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.3,
+                          height: MediaQuery.of(context).size.height * 0.10,
+                          child: TextField(
+                            controller: _descriptionController5,
+                            decoration: const InputDecoration(
+                                hintText: 'Write a caption',
+                                border: InputBorder.none),
+                            maxLines: 8,
+                          ),
+                        ),
+                      ],
                     ),
 
                     // IMAGE UPLOADED
