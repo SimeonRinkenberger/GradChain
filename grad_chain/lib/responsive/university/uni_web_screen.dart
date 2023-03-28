@@ -65,6 +65,8 @@ class _UniWebScreenState extends State<UniWebScreen> {
       bottomNavigationBar: CupertinoTabBar(
         backgroundColor: mobileBackgroundColor,
         items: [
+          // NAVIGATION BOTTOM BAR
+
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,

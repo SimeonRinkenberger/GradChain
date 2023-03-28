@@ -14,7 +14,7 @@ const stuHomeScreenItems = [
 
 const uniHomeScreenItems = [
   UniHomeScreen(),
-  Text('search'),
+  TestScreen(),
   AddDiplomaScreen(),
   Text('notif'),
   Text('profile'),

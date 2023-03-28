@@ -8,6 +8,7 @@ class TestScreen extends StatelessWidget {
     return Center(
         child: Container(
       child: Text('Hello'),
+      color: Colors.white,
     ));
   }
 }
