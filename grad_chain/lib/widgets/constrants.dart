@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:grad_chain/models/user.dart' as model;
 
-import '../screens/home_screen.dart';
+import '../screens/index/home_screen.dart';
 
 model.User? user = Provider.of<UserProvider>(context as BuildContext).getUser;
 

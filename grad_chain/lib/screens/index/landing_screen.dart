@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:grad_chain/screens/login_screen.dart';
-import 'package:grad_chain/screens/signup_screen.dart';
+import 'package:grad_chain/screens/index/home_screen.dart';
+import 'package:grad_chain/screens/index/login_screen.dart';
+import 'package:grad_chain/screens/index/signup_screen.dart';
+import 'package:grad_chain/screens/student/student_login_screen.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class LandingScreen extends StatefulWidget {
+  const LandingScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<LandingScreen> createState() => _LandingScreen();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _LandingScreen extends State<LandingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ]),
             ),
           ),
-          SizedBox(height: 5),
+          SizedBox(height: 10),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             //Block Chain For Deplomas
             Text(
@@ -62,21 +64,34 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                      MaterialPageRoute(builder: (context) => HomeScreen()),
                     );
                   },
-                  child: Text('Log In'),
+                  child: Text('University'),
                 ),
                 SizedBox(width: 30),
                 //sign up
-                OutlinedButton(
+                ElevatedButton(
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SignupScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => StudentLoginScreen()),
                     );
                   },
-                  child: Text('Sign Up'),
+                  child: Text('Student'),
+                ),
+                SizedBox(
+                  width: 30,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                    );
+                  },
+                  child: Text('Employer'),
                 ),
               ]),
             ),

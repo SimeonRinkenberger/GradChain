@@ -1,17 +1,20 @@
 import 'dart:typed_data';
 
 import 'package:grad_chain/resources/auth_methods.dart';
-import 'package:grad_chain/screens/login_screen.dart';
+import 'package:grad_chain/responsive/university/uni_mobile_screen.dart';
+import 'package:grad_chain/responsive/university/uni_mobile_screen.dart';
+import 'package:grad_chain/responsive/university/uni_web_screen.dart';
+import 'package:grad_chain/screens/index/login_screen.dart';
 import 'package:grad_chain/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../responsive/mobile_screen_layout.dart';
-import '../responsive/responsive_layout_screen.dart';
-import '../responsive/web_screen_layout.dart';
-import '../utils/colors.dart';
-import '../widgets/text_field_input.dart';
+import '../../responsive/student/mobile_screen_layout.dart';
+import '../../responsive/index/responsive_layout_screen.dart';
+import '../../responsive/student/web_screen_layout.dart';
+import '../../utils/colors.dart';
+import '../../widgets/text_field_input.dart';
 
 class SignupScreen extends StatefulWidget {
   //final Function()? onTap;
@@ -72,6 +75,8 @@ class _SignupScreenState extends State<SignupScreen> {
           builder: (context) => const ResponsiveLayout(
             mobileScreenLayout: MobileScreenLayout(),
             webScreenLayout: WebScreenLayout(),
+            uniMobileScreenLayout: UniMobileScreen(),
+            uniWebScreenLayout: UniWebScreen(),
           ),
         ),
       );

@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
-import '../models/user.dart';
-import '../providers/user_provider.dart';
-import '../resources/firestore_methods.dart';
-import '../utils/colors.dart';
-import '../utils/utils.dart';
+import 'package:grad_chain/models/user.dart';
+import 'package:grad_chain/providers/user_provider.dart';
+import 'package:grad_chain/resources/firestore_methods.dart';
+import 'package:grad_chain/utils/colors.dart';
+import 'package:grad_chain/utils/utils.dart';
 
 class AddDiplomaScreen extends StatefulWidget {
   const AddDiplomaScreen({super.key});
@@ -112,6 +112,7 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
   @override
   Widget build(BuildContext context) {
     final User user = Provider.of<UserProvider>(context).getUser;
+    debugPrint(user.bio);
 
     return _file == null
         ? Center(

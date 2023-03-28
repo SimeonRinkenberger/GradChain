@@ -1,13 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:grad_chain/providers/user_provider.dart';
-import 'package:grad_chain/responsive/mobile_screen_layout.dart';
-import 'package:grad_chain/responsive/responsive_layout_screen.dart';
-import 'package:grad_chain/responsive/web_screen_layout.dart';
-import 'package:grad_chain/screens/home_screen.dart';
-import 'package:grad_chain/screens/landing_screen.dart';
-import 'package:grad_chain/screens/login_screen.dart';
-import 'package:grad_chain/screens/signup_screen.dart';
+import 'package:grad_chain/responsive/student/mobile_screen_layout.dart';
+import 'package:grad_chain/responsive/index/responsive_layout_screen.dart';
+import 'package:grad_chain/responsive/university/uni_mobile_screen.dart';
+import 'package:grad_chain/responsive/university/uni_web_screen.dart';
+import 'package:grad_chain/responsive/student/web_screen_layout.dart';
+import 'package:grad_chain/screens/index/home_screen.dart';
+import 'package:grad_chain/screens/index/landing_screen.dart';
+import 'package:grad_chain/screens/index/login_screen.dart';
+import 'package:grad_chain/screens/index/signup_screen.dart';
 import 'package:grad_chain/utils/colors.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -68,6 +70,8 @@ class MyApp extends StatelessWidget {
                 return const ResponsiveLayout(
                   mobileScreenLayout: MobileScreenLayout(),
                   webScreenLayout: WebScreenLayout(),
+                  uniMobileScreenLayout: UniMobileScreen(),
+                  uniWebScreenLayout: UniWebScreen(),
                 );
               } else if (snapshot.hasError) {
                 return Center(
@@ -83,7 +87,7 @@ class MyApp extends StatelessWidget {
               );
             }
 
-            return const LoginScreen();
+            return const LandingScreen();
           },
         ),
       ),

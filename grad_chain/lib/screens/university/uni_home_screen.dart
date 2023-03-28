@@ -3,45 +3,26 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:grad_chain/providers/user_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:grad_chain/screens/add_diploma_screen.dart';
+import 'package:grad_chain/screens/university/add_diploma_screen.dart';
 import 'package:grad_chain/utils/claim_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:grad_chain/models/user.dart' as model;
 
-import '../screens/home_screen.dart';
-import '../utils/my_box.dart';
-import '../utils/my_title.dart';
-import 'constrants.dart';
+import '../../widgets/constrants.dart';
+import '../index/home_screen.dart';
+import '../../utils/my_box.dart';
+import '../../utils/my_title.dart';
+import 'package:grad_chain/widgets/constrants.dart';
 import 'package:grad_chain/utils/claim_widget.dart';
 
-class UniWebScreen extends StatefulWidget {
-  const UniWebScreen({super.key});
+class UniHomeScreen extends StatefulWidget {
+  const UniHomeScreen({super.key});
 
   @override
-  State<UniWebScreen> createState() => _UniWebScreenState();
+  State<UniHomeScreen> createState() => _UniHomeScreenState();
 }
 
-class _UniWebScreenState extends State<UniWebScreen> {
-  // THIS CODE IS FOR TESTING GETTING USER DATA FROM FIRESTORE
-  // String username = "";
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   getUsername();
-  // }
-
-  // void getUsername() async {
-  //   DocumentSnapshot snap = await FirebaseFirestore.instance
-  //       .collection('users')
-  //       .doc(FirebaseAuth.instance.currentUser!.uid)
-  //       .get();
-
-  //   setState(() {
-  //     username = (snap.data() as Map<String, dynamic>)['username'];
-  //   });
-  // }
-
+class _UniHomeScreenState extends State<UniHomeScreen> {
   @override
   Widget build(BuildContext context) {
     final model.User? user = Provider.of<UserProvider>(context).getUser;
@@ -131,18 +112,6 @@ class _UniWebScreenState extends State<UniWebScreen> {
                       ),
                     ),
                   ),
-
-                  /* Keeping this while I wait for a response */
-                  // list of previous days
-                  /*Expanded(
-                              child: ListView.builder(
-                                itemCount: 7,
-                                itemBuilder: (context, index) {
-                                  return MyTile();
-                                },
-                              ),
-                            ),
-                            */
 
                   SizedBox(height: 15),
                   Expanded(child: AcceptRemoveList()),
