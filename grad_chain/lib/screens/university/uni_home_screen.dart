@@ -5,6 +5,7 @@ import 'package:grad_chain/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:grad_chain/screens/university/add_diploma_screen.dart';
 import 'package:grad_chain/utils/claim_widget.dart';
+import 'package:grad_chain/utils/university_student_list.dart';
 import 'package:provider/provider.dart';
 import 'package:grad_chain/models/user.dart' as model;
 
@@ -99,7 +100,7 @@ class _UniHomeScreenState extends State<UniHomeScreen> {
                 flex: 2,
                 child: Column(children: [
                   SizedBox(height: 15),
-                  Expanded(child: AcceptRemoveList()),
+                  Expanded(child: UniversityStudentList()),
                   SizedBox(height: 10),
                 ]))
           ],
