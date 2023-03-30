@@ -48,6 +48,21 @@ class _ListScreenState extends State<ListScreen> {
     }
   }
 
+  void _uploadFile() async {
+    final input = FileUploadInputElement();
+    input.accept = '*/*';
+    input.click();
+    input.onChange.listen((event) async {
+      final file = input.files!.first;
+      final storage = FirebaseStorage.instance;
+      final ref = storage.ref(widget.directoryPath + file.name);
+      await ref.putBlob(file);
+      setState(() {
+        _listFiles();
+      });
+    });
+  }
+
   void returnToPrevious() {
     //TODO: Add a way to return to the previous menu, assuming that this isn't a tab.
   }
@@ -56,10 +71,16 @@ class _ListScreenState extends State<ListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(widget.directoryPath)),
-        body: _buildBody()
+      appBar: AppBar(title: Text(widget.directoryPath)),
+      body: _buildBody(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _uploadFile,
+        tooltip: 'Upload file',
+        child: Icon(Icons.cloud_upload),
+      ),
     );
   }
+
 
   Widget _buildBody() {
     if (_files == null) {
