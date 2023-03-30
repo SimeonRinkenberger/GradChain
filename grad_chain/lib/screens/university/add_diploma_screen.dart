@@ -137,6 +137,7 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
     print(res);
   }
 
+  // SELECT PROFILE PIC IMAGE FOR USER
   void selectImage() async {
     Uint8List im = await pickImage(ImageSource.gallery);
     setState(() {
