@@ -1,6 +1,8 @@
+import 'dart:io';
+
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'dart:html';
+import 'package:file_picker/file_picker.dart';
 import 'package:grad_chain/utils/colors.dart';
 import 'package:grad_chain/utils/utils.dart';
 
@@ -31,9 +33,9 @@ class _ListScreenState extends State<ListScreen> {
     try {
       final storage = FirebaseStorage.instance;
       final dir = storage.ref(widget.directoryPath);
-      final files = await dir.listAll();
+      final ListResult result = await dir.listAll();
       setState(() {
-        _files = files.items;
+        _files = result.items;
       });
     } catch (e) {
       print('Failed to list files: invalid directory$e');
@@ -44,16 +46,18 @@ class _ListScreenState extends State<ListScreen> {
   }
 
   void _uploadFile() async {
-    final input = FileUploadInputElement();
-    input.accept = 'application/pdf';
-    input.click();
-    input.onChange.listen((event) async {
-      final file = input.files!.first;
+    final filePickerResult = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
+
+    if (filePickerResult != null) {
+      final file = File(filePickerResult.files.single.path!);
       final storage = FirebaseStorage.instance;
-      final ref = storage.ref(widget.directoryPath + file.name);
-      final task = ref.putBlob(file);
+      final ref = storage.ref(widget.directoryPath + file.path.split('/').last);
+      final task = ref.putFile(file);
       await task.whenComplete(() => _listFiles());
-    });
+    }
   }
 
   void returnToPrevious() {
