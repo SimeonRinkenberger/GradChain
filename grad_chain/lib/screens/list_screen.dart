@@ -13,11 +13,6 @@ class ListScreen extends StatefulWidget{
 
   ListScreen({required this.directoryPath});
 
-
-
- /* const ListScreen(
-  {super.key}
-      );*/
   @override
   State<ListScreen> createState() => _ListScreenState();
 }
@@ -29,7 +24,7 @@ class _ListScreenState extends State<ListScreen> {
   @override
   void initState() {
     super.initState();
-    _listFiles;
+    _listFiles();
   }
 
   Future<void> _listFiles() async {
@@ -50,16 +45,14 @@ class _ListScreenState extends State<ListScreen> {
 
   void _uploadFile() async {
     final input = FileUploadInputElement();
-    input.accept = '*/*';
+    input.accept = 'application/pdf';
     input.click();
     input.onChange.listen((event) async {
       final file = input.files!.first;
       final storage = FirebaseStorage.instance;
       final ref = storage.ref(widget.directoryPath + file.name);
-      await ref.putBlob(file);
-      setState(() {
-        _listFiles();
-      });
+      final task = ref.putBlob(file);
+      await task.whenComplete(() => _listFiles());
     });
   }
 
@@ -83,9 +76,7 @@ class _ListScreenState extends State<ListScreen> {
 
 
   Widget _buildBody() {
-    if (_files == null) {
-      return Center(child: CircularProgressIndicator());
-    } else if (_files.isEmpty) {
+    if (_files.isEmpty) {
       return Center(child: Text('No files found.'));
     } else {
       return ListView.builder(
@@ -95,8 +86,9 @@ class _ListScreenState extends State<ListScreen> {
           return ListTile(
             title: Text(file.name),
             trailing: Icon(Icons.arrow_forward),
-            onTap: () {
+            onTap: () async {
               if (file.name.endsWith('/')) {
+                final files = await file.listAll();
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) =>
@@ -104,6 +96,7 @@ class _ListScreenState extends State<ListScreen> {
                   ),
                 );
               } else {
+                final url = await file.getDownloadURL();
                 //TODO: Add functionality that is as of yet undecided.
               }
             },
