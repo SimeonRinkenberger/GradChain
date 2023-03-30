@@ -1,0 +1,14 @@
+bump2version
+codecov
+coverage
+cryptography
+flake8
+hypothesis
+mypy
+pytest
+pytest-cov
+pytest-runner
+Sphinx==5.2.3
+tox
+twine
+wheel
