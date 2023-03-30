@@ -173,7 +173,7 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
             child: IconButton(
               icon: const Icon(
                 Icons.upload,
-                color: Colors.white,
+                color: Color.fromARGB(255, 91, 91, 91),
               ),
               onPressed: () => _selectImage(context),
             ),

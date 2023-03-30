@@ -54,7 +54,7 @@ class _UniHomeScreenState extends State<UniHomeScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 300,
+                    height: 200,
                   ),
                   Padding(
                     padding: tilePadding,
@@ -98,8 +98,24 @@ class _UniHomeScreenState extends State<UniHomeScreen> {
             Expanded(
                 flex: 2,
                 child: Column(children: [
+                  // first 4 boxes in grid
+                  AspectRatio(
+                    aspectRatio: 16 / 5.5,
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: Container(
+                        height: 400,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.grey[400],
+                        ),
+                      ),
+                    ),
+                  ),
+
                   SizedBox(height: 15),
                   Expanded(child: AcceptRemoveList()),
+
                   SizedBox(height: 10),
                 ]))
           ],
