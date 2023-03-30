@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:grad_chain/widgets/constrants.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
@@ -9,6 +10,9 @@ import 'package:grad_chain/providers/user_provider.dart';
 import 'package:grad_chain/resources/firestore_methods.dart';
 import 'package:grad_chain/utils/colors.dart';
 import 'package:grad_chain/utils/utils.dart';
+
+import '../../resources/auth_methods.dart';
+import '../../widgets/text_field_input.dart';
 
 class AddDiplomaScreen extends StatefulWidget {
   const AddDiplomaScreen({super.key});
@@ -24,7 +28,14 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
   final TextEditingController _descriptionController3 = TextEditingController();
   final TextEditingController _descriptionController4 = TextEditingController();
   final TextEditingController _descriptionController5 = TextEditingController();
+  final TextEditingController _descriptionController6 = TextEditingController();
 
+  // CREATE STUDENT CONTROLLERS
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _bioController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  Uint8List? _image;
   bool _isLoading = false;
 
   void postImage(
@@ -107,6 +118,36 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
     });
   }
 
+  void signUpUser() async {
+    setState(() {
+      _isLoading = true;
+    });
+    String res = await AuthMethods().signUpUser(
+      email: _emailController.text,
+      password: _passwordController.text,
+      username: _usernameController.text,
+      bio: _bioController.text,
+      file: _image!,
+    );
+
+    setState(() {
+      _isLoading = false;
+    });
+
+    if (res != 'success') {
+      showSnackBar(res, context);
+    } else {}
+
+    print(res);
+  }
+
+  void selectImage() async {
+    Uint8List im = await pickImage(ImageSource.gallery);
+    setState(() {
+      _image = im;
+    });
+  }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -117,6 +158,8 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
     _descriptionController3.dispose();
     _descriptionController4.dispose();
     _descriptionController5.dispose();
+    _descriptionController6.dispose();
+    _usernameController.dispose();
   }
 
   @override
@@ -137,12 +180,12 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
         : Scaffold(
             backgroundColor: Colors.grey[300],
             appBar: AppBar(
-              backgroundColor: mobileBackgroundColor,
+              backgroundColor: defaultBackgroundColor,
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: clearImage,
               ),
-              title: const Text('Post to'),
+              title: const Text('Upload diploma for'),
               centerTitle: false,
               actions: [
                 TextButton(
@@ -152,7 +195,7 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
                     user.photoUrl,
                   ),
                   child: const Text(
-                    'Post',
+                    'Upload',
                     style: TextStyle(
                       color: Colors.blueAccent,
                       fontWeight: FontWeight.bold,
@@ -162,106 +205,339 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
                 )
               ],
             ),
-            body: Column(
-              children: [
-                _isLoading
-                    ? const LinearProgressIndicator()
-                    : const Padding(
-                        padding: EdgeInsets.only(top: 0),
-                      ),
-                const Divider(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(
-                        user.photoUrl,
-                      ),
-                    ),
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  _isLoading
+                      ? const LinearProgressIndicator()
+                      : const Padding(
+                          padding: EdgeInsets.only(top: 0),
+                        ),
+                  const Divider(),
 
-                    // This is the description TextBox
-                    Column(
-                      children: [
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          height: MediaQuery.of(context).size.height * 0.10,
-                          child: TextField(
-                            controller: _descriptionController1,
-                            decoration: const InputDecoration(
-                                hintText: 'Write a caption',
-                                border: InputBorder.none),
-                            maxLines: 8,
-                          ),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          height: MediaQuery.of(context).size.height * 0.10,
-                          child: TextField(
-                            controller: _descriptionController2,
-                            decoration: const InputDecoration(
-                                hintText: 'Write a caption',
-                                border: InputBorder.none),
-                            maxLines: 8,
-                          ),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          height: MediaQuery.of(context).size.height * 0.10,
-                          child: TextField(
-                            controller: _descriptionController3,
-                            decoration: const InputDecoration(
-                                hintText: 'Write a caption',
-                                border: InputBorder.none),
-                            maxLines: 8,
-                          ),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          height: MediaQuery.of(context).size.height * 0.10,
-                          child: TextField(
-                            controller: _descriptionController4,
-                            decoration: const InputDecoration(
-                                hintText: 'Write a caption',
-                                border: InputBorder.none),
-                            maxLines: 8,
-                          ),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          height: MediaQuery.of(context).size.height * 0.10,
-                          child: TextField(
-                            controller: _descriptionController5,
-                            decoration: const InputDecoration(
-                                hintText: 'Write a caption',
-                                border: InputBorder.none),
-                            maxLines: 8,
-                          ),
-                        ),
-                      ],
-                    ),
+                  // START OF SIGNUP FORM
 
-                    // IMAGE UPLOADED
-                    SizedBox(
-                      height: 45,
-                      width: 45,
-                      child: AspectRatio(
-                        aspectRatio: 487 / 451,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: MemoryImage(_file!),
-                              fit: BoxFit.fill,
-                              alignment: FractionalOffset.topCenter,
+                  Row(
+                    children: [
+                      // svg image (we use a package called flutter_svg to show svg images
+                      const SizedBox(height: 50),
+
+                      Text(
+                        'Create the student',
+                        style: TextStyle(
+                          color: Colors.grey[700],
+                          fontSize: 42,
+                        ),
+                      ),
+                      const SizedBox(height: 50),
+                      Stack(
+                        children: [
+                          _image != null
+                              ? CircleAvatar(
+                                  radius: 64,
+                                  backgroundImage: MemoryImage(_image!),
+                                )
+                              : const CircleAvatar(
+                                  radius: 64,
+                                  backgroundImage: NetworkImage(
+                                    'https://t3.ftcdn.net/jpg/00/64/67/80/360_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg',
+                                  ),
+                                ),
+                          Positioned(
+                            bottom: -10,
+                            left: 80,
+                            child: IconButton(
+                              onPressed: selectImage,
+                              icon: const Icon(
+                                Icons.add_a_photo,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 50,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        height: MediaQuery.of(context).size.height * 0.10,
+                        child: TextField(
+                          controller: _emailController,
+                          decoration: const InputDecoration(
+                              hintText: 'Enter student email',
+                              border: InputBorder.none),
+                          maxLines: 8,
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        height: MediaQuery.of(context).size.height * 0.10,
+                        child: TextField(
+                          controller: _passwordController,
+                          decoration: const InputDecoration(
+                              hintText: 'Enter student password',
+                              border: InputBorder.none),
+                          maxLines: 8,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  //  SIGN UP CODE
+                  //     const SizedBox(
+                  //       height: 24,
+                  //     ),
+                  //     // text input for email
+                  //     TextFieldInput(
+                  //       hintText: 'Enter your email',
+                  //       textInputType: TextInputType.emailAddress,
+                  //       textEditingController: _emailController,
+                  //     ),
+                  //     const SizedBox(
+                  //       height: 24,
+                  //     ),
+                  //     // text input for password
+                  //     TextFieldInput(
+                  //       hintText: 'Enter your password',
+                  //       textInputType: TextInputType.text,
+                  //       textEditingController: _passwordController,
+                  //       isPass: true,
+                  //     ),
+                  //     const SizedBox(
+                  //       height: 24,
+                  //     ),
+                  //     // text field for bio
+                  //     TextFieldInput(
+                  //       hintText: 'Enter your bio',
+                  //       textInputType: TextInputType.text,
+                  //       textEditingController: _bioController,
+                  //     ),
+                  //     const SizedBox(
+                  //       height: 24,
+                  //     ),
+                  //     // button for login
+                  //     InkWell(
+                  //       onTap: signUpUser,
+                  //       child: Container(
+                  //         child: _isLoading
+                  //             ? const Center(
+                  //                 child: CircularProgressIndicator(
+                  //                   color: primaryColor,
+                  //                 ),
+                  //               )
+                  //             : const Text(
+                  //                 'Sign up',
+                  //                 style: TextStyle(
+                  //                   color: Colors.white,
+                  //                   fontWeight: FontWeight.bold,
+                  //                   fontSize: 16,
+                  //                 ),
+                  //               ),
+                  //         width: double.infinity,
+                  //         alignment: Alignment.center,
+                  //         padding: const EdgeInsets.symmetric(vertical: 12),
+                  //         decoration: const ShapeDecoration(
+                  //           shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.all(
+                  //               Radius.circular(4),
+                  //             ),
+                  //           ),
+                  //           color: Colors.black,
+                  //         ),
+                  //       ),
+                  //     ),
+
+                  //     const SizedBox(
+                  //       height: 12,
+                  //     ),
+                  //     Flexible(
+                  //       child: Container(),
+                  //       flex: 2,
+                  //     ),
+                  //     // transitioning to sign up
+                  //     Row(
+                  //       mainAxisAlignment: MainAxisAlignment.center,
+                  //       children: [
+                  //         Container(
+                  //           padding: const EdgeInsets.symmetric(
+                  //             vertical: 12,
+                  //           ),
+                  //           child: const Text("Already have an account?"),
+                  //         ),
+                  //         GestureDetector(
+                  //           onTap: () {},
+                  //           child: Container(
+                  //             padding: const EdgeInsets.symmetric(
+                  //               vertical: 12,
+                  //               horizontal: 4,
+                  //             ),
+                  //             child: const Text(
+                  //               "Log in",
+                  //               style: TextStyle(
+                  //                 fontWeight: FontWeight.bold,
+                  //                 color: Colors.lightBlueAccent,
+                  //               ),
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     )
+                  //   ],
+                  // ),
+
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   children: [
+                  //     Text(
+                  //       'Create the student',
+                  //       style: TextStyle(
+                  //         color: Colors.grey[700],
+                  //         fontSize: 42,
+                  //       ),
+                  //     ),
+                  //     const Divider(),
+                  //   ],
+                  // ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   children: [
+                  //     const Divider(),
+                  //   ],
+                  // ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   children: [
+                  //     Stack(
+                  //       children: [
+                  //         _image != null
+                  //             ? CircleAvatar(
+                  //                 radius: 64,
+                  //                 backgroundImage: MemoryImage(_image!),
+                  //               )
+                  //             : const CircleAvatar(
+                  //                 radius: 64,
+                  //                 backgroundImage: NetworkImage(
+                  //                   'https://t3.ftcdn.net/jpg/00/64/67/80/360_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg',
+                  //                 ),
+                  //               ),
+                  //         Positioned(
+                  //           bottom: -10,
+                  //           left: 80,
+                  //           child: IconButton(
+                  //             onPressed: selectImage,
+                  //             icon: const Icon(
+                  //               Icons.add_a_photo,
+                  //             ),
+                  //           ),
+                  //         )
+                  //       ],
+                  //     ),
+                  //     const Divider(),
+                  //   ],
+                  // ),
+                  // END OF SIGN UP FORM
+
+                  // START OF THE PICTURE UPLOAD FORM
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CircleAvatar(
+                        backgroundImage: NetworkImage(
+                          user.photoUrl,
+                        ),
+                      ),
+
+                      // This is the description TextBox
+                      Column(
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            height: MediaQuery.of(context).size.height * 0.10,
+                            child: TextField(
+                              controller: _descriptionController1,
+                              decoration: const InputDecoration(
+                                  hintText: 'Write a caption',
+                                  border: InputBorder.none),
+                              maxLines: 8,
+                            ),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            height: MediaQuery.of(context).size.height * 0.10,
+                            child: TextField(
+                              controller: _descriptionController2,
+                              decoration: const InputDecoration(
+                                  hintText: 'Write a caption',
+                                  border: InputBorder.none),
+                              maxLines: 8,
+                            ),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            height: MediaQuery.of(context).size.height * 0.10,
+                            child: TextField(
+                              controller: _descriptionController3,
+                              decoration: const InputDecoration(
+                                  hintText: 'Write a caption',
+                                  border: InputBorder.none),
+                              maxLines: 8,
+                            ),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            height: MediaQuery.of(context).size.height * 0.10,
+                            child: TextField(
+                              controller: _descriptionController4,
+                              decoration: const InputDecoration(
+                                  hintText: 'Write a caption',
+                                  border: InputBorder.none),
+                              maxLines: 8,
+                            ),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            height: MediaQuery.of(context).size.height * 0.10,
+                            child: TextField(
+                              controller: _descriptionController5,
+                              decoration: const InputDecoration(
+                                  hintText: 'Write a caption',
+                                  border: InputBorder.none),
+                              maxLines: 8,
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      // THIS SHOWS THE IMAGE THAT HAS BEEN JUST SELECTED
+                      SizedBox(
+                        height: 45,
+                        width: 45,
+                        child: AspectRatio(
+                          aspectRatio: 487 / 451,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: MemoryImage(_file!),
+                                fit: BoxFit.fill,
+                                alignment: FractionalOffset.topCenter,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    const Divider(),
-                  ],
-                )
-              ],
+                      const Divider(),
+                    ],
+                  )
+                ],
+              ),
             ),
           );
   }
