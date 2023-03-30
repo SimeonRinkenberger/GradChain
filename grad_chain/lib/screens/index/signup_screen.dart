@@ -55,7 +55,7 @@ class _SignupScreenState extends State<SignupScreen> {
     setState(() {
       _isLoading = true;
     });
-    String res = await AuthMethods().signUpUser(
+    List res = await AuthMethods().signUpUser(
       email: _emailController.text,
       password: _passwordController.text,
       username: _usernameController.text,
@@ -67,8 +67,8 @@ class _SignupScreenState extends State<SignupScreen> {
       _isLoading = false;
     });
 
-    if (res != 'success') {
-      showSnackBar(res, context);
+    if (res[0] != 'success') {
+      showSnackBar(res[0], context);
     } else {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(

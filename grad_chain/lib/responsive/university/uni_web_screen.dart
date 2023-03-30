@@ -88,17 +88,17 @@ class _UniWebScreenState extends State<UniWebScreen> {
               Icons.add_circle,
               color: _page == 2 ? primaryColor : secondaryColor,
             ),
-            label: '',
+            label: 'Upload diploma',
             backgroundColor: primaryColor,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.favorite,
-              color: _page == 3 ? primaryColor : secondaryColor,
-            ),
-            label: '',
-            backgroundColor: primaryColor,
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(
+          //     Icons.favorite,
+          //     color: _page == 3 ? primaryColor : secondaryColor,
+          //   ),
+          //   label: '',
+          //   backgroundColor: primaryColor,
+          // ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
