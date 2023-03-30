@@ -222,67 +222,82 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
                       // svg image (we use a package called flutter_svg to show svg images
                       const SizedBox(height: 50),
 
-                      Text(
-                        'Create the student',
-                        style: TextStyle(
-                          color: Colors.grey[700],
-                          fontSize: 42,
-                        ),
-                      ),
-                      const SizedBox(height: 50),
-                      Stack(
+                      Column(
                         children: [
-                          _image != null
-                              ? CircleAvatar(
-                                  radius: 64,
-                                  backgroundImage: MemoryImage(_image!),
-                                )
-                              : const CircleAvatar(
-                                  radius: 64,
-                                  backgroundImage: NetworkImage(
-                                    'https://t3.ftcdn.net/jpg/00/64/67/80/360_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg',
-                                  ),
-                                ),
-                          Positioned(
-                            bottom: -10,
-                            left: 80,
-                            child: IconButton(
-                              onPressed: selectImage,
-                              icon: const Icon(
-                                Icons.add_a_photo,
+                          Center(
+                            child: Text(
+                              'Create the student',
+                              style: TextStyle(
+                                color: Colors.grey[700],
+                                fontSize: 30,
                               ),
                             ),
-                          )
+                          ),
+                          const SizedBox(height: 30),
+                          Row(
+                            children: [
+                              Stack(
+                                alignment: Alignment.topRight,
+                                children: [
+                                  _image != null
+                                      ? CircleAvatar(
+                                          radius: 64,
+                                          backgroundImage: MemoryImage(_image!),
+                                        )
+                                      : const CircleAvatar(
+                                          radius: 64,
+                                          backgroundImage: NetworkImage(
+                                            'https://t3.ftcdn.net/jpg/00/64/67/80/360_F_64678017_zUpiZFjj04cnLri7oADnyMH0XBYyQghG.jpg',
+                                          ),
+                                        ),
+                                  Positioned(
+                                    bottom: -10,
+                                    left: 80,
+                                    child: IconButton(
+                                      onPressed: selectImage,
+                                      icon: const Icon(
+                                        Icons.add_a_photo,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                width: 50,
+                              ),
+                              Column(
+                                children: [
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.3,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.10,
+                                    child: TextField(
+                                      controller: _emailController,
+                                      decoration: const InputDecoration(
+                                          hintText: 'Enter student email',
+                                          border: InputBorder.none),
+                                      maxLines: 8,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.3,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.10,
+                                    child: TextField(
+                                      controller: _passwordController,
+                                      decoration: const InputDecoration(
+                                          hintText: 'Enter student password',
+                                          border: InputBorder.none),
+                                      maxLines: 8,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ],
-                      ),
-                      const SizedBox(
-                        height: 50,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        height: MediaQuery.of(context).size.height * 0.10,
-                        child: TextField(
-                          controller: _emailController,
-                          decoration: const InputDecoration(
-                              hintText: 'Enter student email',
-                              border: InputBorder.none),
-                          maxLines: 8,
-                        ),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        height: MediaQuery.of(context).size.height * 0.10,
-                        child: TextField(
-                          controller: _passwordController,
-                          decoration: const InputDecoration(
-                              hintText: 'Enter student password',
-                              border: InputBorder.none),
-                          maxLines: 8,
-                        ),
                       ),
                     ],
                   ),
@@ -445,15 +460,28 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
                   // END OF SIGN UP FORM
 
                   // START OF THE PICTURE UPLOAD FORM
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Text(
+                    'Create the diploma',
+                    style: TextStyle(
+                      color: Colors.grey[700],
+                      fontSize: 30,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CircleAvatar(
-                        backgroundImage: NetworkImage(
-                          user.photoUrl,
-                        ),
-                      ),
+                      // CircleAvatar(
+                      //   backgroundImage: NetworkImage(
+                      //     user.photoUrl,
+                      //   ),
+                      // ),
 
                       // This is the description TextBox
                       Column(
