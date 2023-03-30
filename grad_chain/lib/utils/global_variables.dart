@@ -3,6 +3,7 @@ import 'package:grad_chain/screens/student/stu_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:grad_chain/screens/university/test_screen.dart';
 import 'package:grad_chain/screens/university/uni_home_screen.dart';
+import 'package:grad_chain/utils/university_student_list.dart';
 
 const stuHomeScreenItems = [
   StuHomeScreen(),
