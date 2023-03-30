@@ -71,13 +71,23 @@ class _UniversityStudentList extends State<UniversityStudentList> {
                     ListView.builder(
                         shrinkWrap: true,
                         itemCount: snapshot.data!.docs.length,
-                        itemBuilder: (context, index) => ClaimCard(
-                              snap: snapshot.data!.docs[index].data(),
-                            )),
-                    SizedBox(height: 5),
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                              leading: CircleAvatar(
+                                backgroundImage:
+                                    AssetImage("assets/images/CBU_Logo.png"),
+                              ),
+                              title: ClaimCard(
+                                  snap: snapshot.data!.docs[index].data()),
+                              trailing: Text('View Documents'));
+
+                          SizedBox(height: 5);
+                          /*
                     _uniStudentList.length > 0
                         ? Text('')
                         : Text('No pending docuements'),
+                        */
+                        })
                   ]),
             );
           }),
