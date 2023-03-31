@@ -6,9 +6,21 @@ import 'package:grad_chain/models/diploma.dart';
 import 'package:grad_chain/resources/storage_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 
 class FirestoreMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  Future<String> uploadDiplomaToBlockChain(String diplomaUrl) async {
+    HttpsCallable callable =
+        FirebaseFunctions.instance.httpsCallable('uploadDiplomaToBlockChain');
+    final resp = await callable.call(<String, dynamic>{
+      'url': diplomaUrl,
+    });
+    // resp will have the bChainUrl
+    return resp.data;
+    // print("result: ${resp.data}");
+  }
 
   // upload diploma
   Future<String> uploadDiploma(
@@ -23,6 +35,9 @@ class FirestoreMethods {
       String diplomaUrl =
           await StorageMethods().uploadImageToStorage('diplomas', file, true);
 
+      // CALL CLOUD FUNCTION HERE
+      String bChainUrl = await uploadDiplomaToBlockChain(diplomaUrl);
+
       String diplomaId = const Uuid().v1();
       Diploma diploma = Diploma(
         description: description,
@@ -33,6 +48,7 @@ class FirestoreMethods {
         diplomaUrl: diplomaUrl,
         //profImage: profImage,
         claimed: [],
+        bChainUrl: bChainUrl,
       );
 
       _firestore.collection('diplomas').doc(diplomaId).set(
