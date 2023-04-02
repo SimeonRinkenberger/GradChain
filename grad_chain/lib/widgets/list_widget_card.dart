@@ -32,7 +32,6 @@ class _ListWidgetCardState extends State<ListWidgetCard> {
     final width = MediaQuery.of(context).size.width;
 
     return ListTile(
-        leading: Icon(Icons.notifications),
         title: Text(widget.snap[user != null ? 'email' : 'description']),
         trailing: Row(mainAxisSize: MainAxisSize.min, children: [
           // IconButton(

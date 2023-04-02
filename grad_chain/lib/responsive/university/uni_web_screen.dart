@@ -75,18 +75,18 @@ class _UniWebScreenState extends State<UniWebScreen> {
             label: '',
             backgroundColor: primaryColor,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
-              color: _page == 1 ? primaryColor : secondaryColor,
-            ),
-            label: '',
-            backgroundColor: primaryColor,
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(
+          //     Icons.search,
+          //     color: _page == 1 ? primaryColor : secondaryColor,
+          //   ),
+          //   label: '',
+          //   backgroundColor: primaryColor,
+          // ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.add_circle,
-              color: _page == 2 ? primaryColor : secondaryColor,
+              color: _page == 1 ? primaryColor : secondaryColor,
             ),
             label: 'Upload diploma',
             backgroundColor: primaryColor,
@@ -99,14 +99,14 @@ class _UniWebScreenState extends State<UniWebScreen> {
           //   label: '',
           //   backgroundColor: primaryColor,
           // ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person,
-              color: _page == 4 ? primaryColor : secondaryColor,
-            ),
-            label: '',
-            backgroundColor: primaryColor,
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(
+          //     Icons.person,
+          //     color: _page == 4 ? primaryColor : secondaryColor,
+          //   ),
+          //   label: '',
+          //   backgroundColor: primaryColor,
+          // ),
         ],
         onTap: navigationTapped,
       ),

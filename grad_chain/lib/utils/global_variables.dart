@@ -6,16 +6,16 @@ import 'package:grad_chain/screens/university/uni_home_screen.dart';
 
 const stuHomeScreenItems = [
   StuHomeScreen(),
-  Text('search'),
-  AddDiplomaScreen(),
-  Text('notif'),
+  //Text('search'),
+  //AddDiplomaScreen(),
+  //Text('notif'),
   Text('profile'),
 ];
 
 const uniHomeScreenItems = [
   UniHomeScreen(),
-  TestScreen(),
+  //TestScreen(),
   AddDiplomaScreen(),
-  Text('notif'),
-  Text('profile'),
+  //Text('notif'),
+  //Text('profile'),
 ];

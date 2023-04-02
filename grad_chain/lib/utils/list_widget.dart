@@ -96,9 +96,7 @@ class _ListWidgetState extends State<ListWidget> {
                                   snap: snapshot.data!.docs[index].data(),
                                 )),
                         SizedBox(height: 5),
-                        _claimableDiplomas.length > 0
-                            ? Text('')
-                            : Text('No pending docuements'),
+                        _claimableDiplomas.length > 0 ? Text('') : Text(''),
                       ]),
                 ),
               ),

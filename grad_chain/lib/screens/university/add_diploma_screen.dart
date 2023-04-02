@@ -174,7 +174,7 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
             child: IconButton(
               icon: const Icon(
                 Icons.upload,
-                color: Colors.white,
+                color: Color.fromARGB(255, 78, 78, 78),
               ),
               onPressed: () => _selectImage(context),
             ),
@@ -184,10 +184,12 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
             appBar: AppBar(
               backgroundColor: defaultBackgroundColor,
               leading: IconButton(
+                color: Color.fromARGB(255, 70, 70, 70),
                 icon: const Icon(Icons.arrow_back),
                 onPressed: clearImage,
               ),
-              title: const Text('Upload diploma for'),
+              title: const Text('Upload diploma for',
+                  style: TextStyle(color: Color.fromARGB(255, 75, 75, 75))),
               centerTitle: false,
               actions: [
                 TextButton(
@@ -215,19 +217,33 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
 
                   // START OF SIGNUP FORM
 
-                  Row(
-                    children: [
-                      // svg image (we use a package called flutter_svg to show svg images
-                      const SizedBox(height: 50),
-
-                      Text(
-                        'Student information',
-                        style: TextStyle(
-                          color: Colors.grey[700],
-                          fontSize: 42,
+                  Center(
+                    child: Row(
+                      children: [
+                        // svg image (we use a package called flutter_svg to show svg images
+                        const SizedBox(
+                          height: 50,
+                          width: 100,
                         ),
-                      ),
-                      const SizedBox(height: 50),
+
+                        Text(
+                          'Student information',
+                          style: TextStyle(
+                            color: Colors.grey[700],
+                            fontSize: 42,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 100,
+                          width: 200,
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  // SIGN UP FORM TEXTFIELDS
+                  Column(
+                    children: [
                       Stack(
                         children: [
                           _image != null
@@ -256,12 +272,6 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
                       const SizedBox(
                         height: 50,
                       ),
-                    ],
-                  ),
-
-                  // SIGN UP FORM TEXTFIELDS
-                  Column(
-                    children: [
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.3,
                         height: MediaQuery.of(context).size.height * 0.10,
