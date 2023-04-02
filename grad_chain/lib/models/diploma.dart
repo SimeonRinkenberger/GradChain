@@ -9,6 +9,7 @@ class Diploma {
   final String diplomaUrl;
   //final String profImage;
   final claimed;
+  final String bChainUrl;
 
   const Diploma({
     required this.description,
@@ -18,6 +19,7 @@ class Diploma {
     required this.diplomaId,
     required this.datePublished,
     required this.diplomaUrl,
+    required this.bChainUrl,
     //required this.profImage,
   });
 
@@ -29,6 +31,7 @@ class Diploma {
         "diplomaId": diplomaId,
         "datePublished": datePublished,
         'diplomaUrl': diplomaUrl,
+        "bChainUrl": bChainUrl,
         //'profImage': profImage
       };
 
@@ -43,6 +46,7 @@ class Diploma {
       datePublished: snapshot["datePublished"],
       university: snapshot["university"],
       diplomaUrl: snapshot['diplomaUrl'],
+      bChainUrl: snapshot["bChainUrl"],
       //profImage: snapshot['profImage'],
     );
   }
