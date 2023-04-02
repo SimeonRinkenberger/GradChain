@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:grad_chain/widgets/claim_card.dart';
 
-class AcceptRemoveList extends StatefulWidget {
+import '../widgets/dip_card.dart';
+
+class StuDipList extends StatefulWidget {
   List<String> claimableDiplomas = [
     'BS Computer Science, California Baptist University',
     'MS Software Development, University of California Riverside',
@@ -10,13 +12,13 @@ class AcceptRemoveList extends StatefulWidget {
   ];
 
   // ignore: use_key_in_widget_constructors
-  AcceptRemoveList({claimableDiplomas});
+  StuDipList({claimableDiplomas});
 
   @override
-  _AcceptRemoveListState createState() => _AcceptRemoveListState();
+  _StuDipListState createState() => _StuDipListState();
 }
 
-class _AcceptRemoveListState extends State<AcceptRemoveList> {
+class _StuDipListState extends State<StuDipList> {
   List<String> _claimableDiplomas = [];
   //late final List<String> claimDiplomas;
   //NotificationPreviewList({requied. this.ClaimDiplomas});
@@ -78,7 +80,7 @@ class _AcceptRemoveListState extends State<AcceptRemoveList> {
                         ListView.builder(
                             shrinkWrap: true,
                             itemCount: snapshot.data!.docs.length,
-                            itemBuilder: (context, index) => ClaimCard(
+                            itemBuilder: (context, index) => DipCard(
                                   snap: snapshot.data!.docs[index].data(),
                                 )),
                         SizedBox(height: 5),

@@ -8,7 +8,7 @@ import 'package:grad_chain/models/user.dart' as model;
 import 'package:grad_chain/resources/storage_methods.dart';
 import 'package:flutter/widgets.dart';
 
-class AuthMethods {
+class StuAuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 

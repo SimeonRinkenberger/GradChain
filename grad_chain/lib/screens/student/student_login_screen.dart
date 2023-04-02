@@ -9,6 +9,7 @@ import 'package:grad_chain/widgets/text_field_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../resources/stu_auth_methods.dart';
 import '../../responsive/student/mobile_screen_layout.dart';
 import '../../responsive/index/responsive_layout_screen.dart';
 import '../../responsive/student/web_screen_layout.dart';
@@ -37,7 +38,7 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
     setState(() {
       _isLoading = true;
     });
-    String res = await AuthMethods().loginUser(
+    String res = await StuAuthMethods().loginUser(
       email: _emailController.text,
       password: _passwordController.text,
     );

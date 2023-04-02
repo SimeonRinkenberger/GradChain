@@ -7,9 +7,9 @@ import 'package:grad_chain/screens/university/uni_home_screen.dart';
 const stuHomeScreenItems = [
   StuHomeScreen(),
   Text('search'),
-  AddDiplomaScreen(),
-  Text('notif'),
-  Text('profile'),
+  // AddDiplomaScreen(),
+  // Text('notif'),
+  // Text('profile'),
 ];
 
 const uniHomeScreenItems = [
