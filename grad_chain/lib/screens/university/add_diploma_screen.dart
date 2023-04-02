@@ -166,8 +166,8 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final User user = Provider.of<UserProvider>(context).getUser;
-    debugPrint(user.photoUrl);
+    final User? user = Provider.of<UserProvider>(context).getUser;
+    //debugPrint(user?.photoUrl);
 
     return _file == null
         ? Center(
@@ -191,7 +191,7 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
               centerTitle: false,
               actions: [
                 TextButton(
-                  onPressed: () => signUpStudent(user.uid, user.username),
+                  onPressed: () => signUpStudent(user!.uid, user!.username),
                   child: const Text(
                     'Upload',
                     style: TextStyle(

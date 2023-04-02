@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:grad_chain/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:grad_chain/screens/university/add_diploma_screen.dart';
-import 'package:grad_chain/utils/claim_widget.dart';
+import 'package:grad_chain/utils/list_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:grad_chain/models/user.dart' as model;
 
@@ -15,7 +15,7 @@ import 'package:grad_chain/utils/global_variables.dart';
 import 'package:grad_chain/utils/my_box.dart';
 import 'package:grad_chain/utils/my_title.dart';
 import 'package:grad_chain/widgets/constrants.dart';
-import 'package:grad_chain/utils/claim_widget.dart';
+import 'package:grad_chain/utils/list_widget.dart';
 
 class UniWebScreen extends StatefulWidget {
   const UniWebScreen({super.key});

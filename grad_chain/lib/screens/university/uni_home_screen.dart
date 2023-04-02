@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:grad_chain/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:grad_chain/screens/university/add_diploma_screen.dart';
-import 'package:grad_chain/utils/claim_widget.dart';
+import 'package:grad_chain/utils/list_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:grad_chain/models/user.dart' as model;
 
@@ -13,7 +13,7 @@ import '../index/home_screen.dart';
 import '../../utils/my_box.dart';
 import '../../utils/my_title.dart';
 import 'package:grad_chain/widgets/constrants.dart';
-import 'package:grad_chain/utils/claim_widget.dart';
+import 'package:grad_chain/utils/list_widget.dart';
 
 class UniHomeScreen extends StatefulWidget {
   const UniHomeScreen({super.key});
@@ -99,7 +99,7 @@ class _UniHomeScreenState extends State<UniHomeScreen> {
                 flex: 2,
                 child: Column(children: [
                   SizedBox(height: 15),
-                  Expanded(child: AcceptRemoveList()),
+                  Expanded(child: ListWidget()),
                   SizedBox(height: 10),
                 ]))
           ],

@@ -2,10 +2,11 @@ import 'package:clipboard/clipboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:grad_chain/models/student.dart';
 import 'package:grad_chain/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:grad_chain/screens/index/home_screen.dart';
-import 'package:grad_chain/utils/claim_widget.dart';
+import 'package:grad_chain/utils/list_widget.dart';
 import 'package:grad_chain/utils/global_variables.dart';
 import 'package:provider/provider.dart';
 import 'package:grad_chain/models/user.dart' as model;
@@ -15,7 +16,7 @@ import '../../utils/colors.dart';
 import '../../utils/my_box.dart';
 import '../../utils/my_title.dart';
 import '../../widgets/constrants.dart';
-import 'package:grad_chain/utils/claim_widget.dart';
+import 'package:grad_chain/utils/list_widget.dart';
 
 class WebScreenLayout extends StatefulWidget {
   const WebScreenLayout({super.key});
@@ -53,7 +54,7 @@ class _WebScreenLayoutState extends State<WebScreenLayout> {
 
   @override
   Widget build(BuildContext context) {
-    final model.User? user = Provider.of<UserProvider>(context).getUser;
+    final Student? stu = Provider.of<UserProvider>(context).getStu;
 
     return Scaffold(
       body: PageView(

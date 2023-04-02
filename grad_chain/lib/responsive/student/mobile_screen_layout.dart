@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:grad_chain/models/user.dart' as model;
 
+import '../../models/student.dart';
 import '../../screens/index/home_screen.dart';
-import '../../utils/claim_widget.dart';
+import '../../utils/list_widget.dart';
 import '../../utils/my_box.dart';
 import '../../utils/my_title.dart';
 import '../../widgets/constrants.dart';
@@ -24,15 +25,15 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
 
   @override
   Widget build(BuildContext context) {
-    final model.User? user = Provider.of<UserProvider>(context).getUser;
-    return user == null
+    final Student? stu = Provider.of<UserProvider>(context).getStu;
+    return stu == null
         ? const Center(
             child: CircularProgressIndicator(),
           )
-        : user.photoUrl == null
+        : stu.photoUrl == null
             ? Center(
                 child: Text(
-                user.username,
+                stu.username,
                 style: TextStyle(color: Colors.white),
               ))
             : Scaffold(
@@ -49,7 +50,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                           //leading: Image.network('${user.photoUrl}'),
                           title: Text(
                             //'hu',
-                            user.username,
+                            stu.username,
                             style: drawerTextColor,
                           ),
                         ),
@@ -62,7 +63,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                         child: ListTile(
                           leading: OutlinedButton(
                             onPressed: () {
-                              FlutterClipboard.copy('${user.username}');
+                              FlutterClipboard.copy('${stu.username}');
                             },
                             child: Icon(Icons.share),
                           ),
@@ -118,7 +119,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
                       // Notifications
 
                       SizedBox(height: 15),
-                      Expanded(child: AcceptRemoveList()),
+                      Expanded(child: ListWidget()),
                     ],
                   ),
                 ),

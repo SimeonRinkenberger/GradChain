@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:grad_chain/models/user.dart' as model;
 
 import '../../../screens/index/home_screen.dart';
-import '../../../utils/claim_widget.dart';
+import '../../utils/list_widget.dart';
 import '../../../utils/my_box.dart';
 import '../../../utils/my_title.dart';
 import '../../../widgets/constrants.dart';
@@ -118,7 +118,7 @@ class _UniMobileScreenState extends State<UniMobileScreen> {
                       // Notifications
 
                       SizedBox(height: 15),
-                      Expanded(child: AcceptRemoveList()),
+                      Expanded(child: ListWidget()),
                     ],
                   ),
                 ),

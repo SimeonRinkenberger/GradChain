@@ -10,10 +10,11 @@ import 'package:cloud_functions/cloud_functions.dart';
 
 class FirestoreMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseFunctions _functions = FirebaseFunctions.instance;
 
   Future<String> uploadDiplomaToBlockChain(String diplomaUrl) async {
     HttpsCallable callable =
-        FirebaseFunctions.instance.httpsCallable('uploadDiplomaToBlockChain');
+        _functions.httpsCallable('uploadDiplomaToBlockChain');
     final resp = await callable.call(<String, dynamic>{
       'url': diplomaUrl,
     });
@@ -36,7 +37,7 @@ class FirestoreMethods {
           await StorageMethods().uploadImageToStorage('diplomas', file, true);
 
       // CALL CLOUD FUNCTION HERE
-      String bChainUrl = await uploadDiplomaToBlockChain(diplomaUrl);
+      //String bChainUrl = await uploadDiplomaToBlockChain(diplomaUrl);
 
       String diplomaId = const Uuid().v1();
       Diploma diploma = Diploma(
@@ -48,7 +49,7 @@ class FirestoreMethods {
         diplomaUrl: diplomaUrl,
         //profImage: profImage,
         claimed: [],
-        bChainUrl: bChainUrl,
+        bChainUrl: 'testUrl',
       );
 
       _firestore.collection('diplomas').doc(diplomaId).set(

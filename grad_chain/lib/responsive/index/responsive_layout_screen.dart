@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:grad_chain/models/student.dart';
 import 'package:grad_chain/providers/user_provider.dart';
 import 'package:grad_chain/utils/dimensions.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +35,7 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
 
   addData() async {
     // context come from State<ResponsiveLayout>
+    // User currentUser = FirebaseAuth.instance.currentUser!;
     UserProvider _userProvider = Provider.of(context,
         listen:
             false); // listen is false so that it only refreshes the user data when we wanted it to, in this case when awaiting the method refreshUser()
@@ -42,28 +45,24 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
   @override
   Widget build(BuildContext context) {
     final model.User? user = Provider.of<UserProvider>(context).getUser;
+    final Student? stu = Provider.of<UserProvider>(context).getStu;
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth > webScreenSize) {
-          // web screen
-          switch (user?.cli_type) {
-            case 0:
-              return widget.webScreenLayout;
-            case 1:
-              return widget.uniWebScreenLayout;
-            default:
-              return widget.webScreenLayout;
+        if (user != null) {
+          if (constraints.maxWidth > webScreenSize) {
+            // web screen
+            return widget.uniWebScreenLayout;
           }
-        }
-        // mobile screen
-        switch (user?.cli_type) {
-          case 0:
-            return widget.mobileScreenLayout;
-          case 1:
-            return widget.uniMobileScreenLayout;
-          default:
+          // mobile screen
+          return widget.uniMobileScreenLayout;
+        } else {
+          if (constraints.maxWidth > webScreenSize) {
+            // web screen
             return widget.webScreenLayout;
+          }
+          // mobile screen
+          return widget.mobileScreenLayout;
         }
       },
     );
