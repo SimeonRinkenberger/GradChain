@@ -127,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Text(
-                      'Are you new here? Create an account below.',
+                      'Are you new here? Create an account here.',
                       style: TextStyle(color: Colors.grey[700]),
                     ),
                   ),

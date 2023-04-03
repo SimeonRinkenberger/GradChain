@@ -69,35 +69,37 @@ class _ListWidgetState extends State<ListWidget> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Container(
-                  height: 255,
+                  height: 530,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     //border: Border.all(color: Colors.black),
                     color: Colors.white70,
                   ),
-                  child: Column(
-                      //crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                        Text(
-                          user != null ? uniTitle : stuTitle,
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                  child: SingleChildScrollView(
+                    child: Column(
+                        //crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                          Text(
+                            user != null ? uniTitle : stuTitle,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 5),
+                          SizedBox(height: 5),
 
-                        // List of items
-                        ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: snapshot.data!.docs.length,
-                            itemBuilder: (context, index) => ListWidgetCard(
-                                  snap: snapshot.data!.docs[index].data(),
-                                )),
-                        SizedBox(height: 5),
-                        _claimableDiplomas.length > 0 ? Text('') : Text(''),
-                      ]),
+                          // List of items
+                          ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: snapshot.data!.docs.length,
+                              itemBuilder: (context, index) => ListWidgetCard(
+                                    snap: snapshot.data!.docs[index].data(),
+                                  )),
+                          SizedBox(height: 5),
+                          _claimableDiplomas.length > 0 ? Text('') : Text(''),
+                        ]),
+                  ),
                 ),
               ),
             );

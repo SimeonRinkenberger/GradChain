@@ -84,15 +84,15 @@ class _LandingScreen extends State<LandingScreen> {
                 SizedBox(
                   width: 30,
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
-                    );
-                  },
-                  child: Text('Employer'),
-                ),
+                // ElevatedButton(
+                //   onPressed: () {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(builder: (context) => HomeScreen()),
+                //     );
+                //   },
+                //   child: Text('Employer'),
+                // ),
               ]),
             ),
           ),

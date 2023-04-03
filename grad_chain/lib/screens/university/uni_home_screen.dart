@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:grad_chain/providers/user_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:grad_chain/screens/index/landing_screen.dart';
 import 'package:grad_chain/screens/university/add_diploma_screen.dart';
 import 'package:grad_chain/utils/list_widget.dart';
 import 'package:provider/provider.dart';
@@ -79,7 +80,7 @@ class _UniHomeScreenState extends State<UniHomeScreen> {
                           Navigator.push(
                             context as BuildContext,
                             MaterialPageRoute(
-                                builder: (context) => HomeScreen()),
+                                builder: (context) => LandingScreen()),
                           );
                         },
                         child: Icon(Icons.logout),
