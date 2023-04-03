@@ -2,11 +2,13 @@ import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:grad_chain/models/student.dart';
+import 'package:grad_chain/models/student.dart' as model;
 import 'package:grad_chain/models/user.dart' as model;
 
 import 'package:grad_chain/resources/storage_methods.dart';
 import 'package:flutter/widgets.dart';
+
+import '../models/student.dart';
 
 class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -18,6 +20,14 @@ class AuthMethods {
     DocumentSnapshot documentSnapshot =
         await _firestore.collection('users').doc(currentUser.uid).get();
 
+    return model.User.fromSnap(documentSnapshot);
+  }
+
+  Future<model.User> getStudentDetails() async {
+    User currentStudent = _auth.currentUser!;
+
+    DocumentSnapshot documentSnapshot =
+        await _firestore.collection('students').doc(currentStudent.uid).get();
     return model.User.fromSnap(documentSnapshot);
   }
 
@@ -51,7 +61,7 @@ class AuthMethods {
           email: email,
           bio: bio,
           photoUrl: photoUrl,
-          cli_type: 0,
+          cli_type: 1,
         );
 
         await _firestore.collection('users').doc(cred.user!.uid).set(
