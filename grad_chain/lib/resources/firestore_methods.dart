@@ -14,17 +14,20 @@ class FirestoreMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseFunctions _functions = FirebaseFunctions.instance;
 
+  final String url =
+      'https://us-central1-gradchain-55ffd.cloudfunctions.net/ipfs_upload';
+
   // Future<String> uploadDiplomaToBlockChain(String diplomaUrl) async {
   //   HttpsCallable callable = _functions.httpsCallable('ipfs_upload');
 
   //   print(callable);
-  //   // final resp = await callable.call(<String, dynamic>{
-  //   //   'url': diplomaUrl,
-  //   // });
-  //   // // resp will have the bChainUrl
-  //   // print("result: ${resp.data}");
-  //   // print(resp.data as String);
-  //   //return resp.data as String;
+  //   final resp = await callable.call(<String, dynamic>{
+  //     'url': diplomaUrl,
+  //   });
+  //   // resp will have the bChainUrl
+  //   print("result: ${resp.data}");
+  //   print(resp.data as String);
+  //   return resp.data as String;
   //   return 'Test';
   // }
 
@@ -47,9 +50,6 @@ class FirestoreMethods {
   // }
 
   // HTTP PACKAGE
-  final String url =
-      'https://cors-anywhere.herokuapp.com/https://us-central1-gradchain-55ffd.cloudfunctions.net/ipfs_upload';
-
   Future<String> uploadDiplomaToBlockChain(String diplomaUrl) async {
     final response = await http.post(Uri.parse(url), body: {'url': diplomaUrl});
 
@@ -107,7 +107,7 @@ class FirestoreMethods {
           await StorageMethods().uploadImageToStorage('diplomas', file, true);
 
       // CALL CLOUD FUNCTION HERE
-      String bChainUrl = await uploadDiplomaToBlockChain(diplomaUrl);
+      //String bChainUrl = await uploadDiplomaToBlockChain(diplomaUrl);
 
       String diplomaId = const Uuid().v1();
       Diploma diploma = Diploma(
@@ -119,7 +119,7 @@ class FirestoreMethods {
         diplomaUrl: diplomaUrl,
         //profImage: profImage,
         claimed: [],
-        bChainUrl: bChainUrl,
+        bChainUrl: 'bChainUrl',
       );
 
       _firestore.collection('diplomas').doc(diplomaId).set(
