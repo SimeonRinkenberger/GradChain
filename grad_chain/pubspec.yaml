@@ -44,6 +44,7 @@ dependencies:
   flutter_svg: ^2.0.2
   image_picker: ^0.8.6+3
   provider: ^6.0.5
+  url_launcher: ^6.1.10
   uuid: ^3.0.7
 
 dev_dependencies:
@@ -67,6 +68,7 @@ flutter:
   assets:
     - assets/ic_instagram.svg
     - assets/images/gradchain_logo.png
+    - assets/images/CBU_Logo.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

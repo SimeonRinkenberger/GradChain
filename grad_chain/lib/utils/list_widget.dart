@@ -49,61 +49,49 @@ class _ListWidgetState extends State<ListWidget> {
     var stuTitle = "List of diplomas";
 
     return Scaffold(
-      backgroundColor: Colors.grey[300],
-      body: StreamBuilder(
-          stream: user != null ? uniQuery : stuQuery,
-          //FirebaseFirestore.instance.collection('diplomas').snapshots(),
-          builder: (context,
-              AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
+        backgroundColor: Colors.grey[300],
+        body: StreamBuilder(
+            stream: user != null ? uniQuery : stuQuery,
+            //FirebaseFirestore.instance.collection('diplomas').snapshots(),
+            builder: (context,
+                AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
 
-            return ConstrainedBox(
-              //constraints: BoxConstraints.loose(Size(700.0, 250.0)),
-              constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(context).size.width * 0.5,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Container(
-                  height: 255,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    //border: Border.all(color: Colors.black),
-                    color: Colors.white70,
-                  ),
-                  child: Column(
-                      //crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
-                        Text(
-                          user != null ? uniTitle : stuTitle,
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(height: 5),
-
-                        // List of items
-                        ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: snapshot.data!.docs.length,
-                            itemBuilder: (context, index) => ListWidgetCard(
-                                  snap: snapshot.data!.docs[index].data(),
-                                )),
-                        SizedBox(height: 5),
-                        _claimableDiplomas.length > 0
-                            ? Text('')
-                            : Text('No pending docuements'),
-                      ]),
+              return Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: Colors.white70,
                 ),
-              ),
-            );
-          }),
-    );
+                child: Column(
+                    //crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                      Text(
+                        user != null ? uniTitle : stuTitle,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 5),
+
+                      // List of items
+                      ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: snapshot.data!.docs.length,
+                          itemBuilder: (context, index) => ListWidgetCard(
+                                snap: snapshot.data!.docs[index].data(),
+                              )),
+                      //SizedBox(height: 5),
+                      //_claimableDiplomas.length > 0
+                      //   ? Text('')
+                      //  : Text('No pending docuements'),
+                    ]),
+              );
+            }));
   }
 }

@@ -11,6 +11,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../models/student.dart';
+import 'display_diploma.dart';
 
 class ListWidgetCard extends StatefulWidget {
   final snap;
@@ -32,33 +33,21 @@ class _ListWidgetCardState extends State<ListWidgetCard> {
     final width = MediaQuery.of(context).size.width;
 
     return ListTile(
-        leading: Icon(Icons.notifications),
-        title: Text(widget.snap[user != null ? 'email' : 'description']),
-        trailing: Row(mainAxisSize: MainAxisSize.min, children: [
-          // IconButton(
-          //   icon: widget.snap['claimed'].contains(stu?.uid)
-          //       ? const Icon(
-          //           Icons.check,
-          //           color: Colors.red,
-          //         )
-          //       : const Icon(
-          //           Icons.check_box_outline_blank,
-          //         ),
-          //   onPressed: () {
-          //     // debugPrint(user.uid);
-          //     // debugPrint(widget.snap['diplomaId']);
-          //     // debugPrint(widget.snap['claimed'].toString());
-          //     FirestoreMethods().claimDiploma(
-          //       widget.snap['diplomaId'],
-          //       stu!.uid,
-          //       widget.snap['claimed'],
-          //     );
-          //   },
-          // ),
-          IconButton(
-            icon: Icon(Icons.remove),
-            onPressed: () {},
-          )
-        ]));
+      leading: //CircleAvatar(
+          //backgroundImage: Image.asset(assets/images/CBU_Logo.png),
+          //),
+          Text(user!.username),
+      title: Text(widget.snap[user != null ? 'email' : 'description']),
+      trailing: ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => DisplayDiploma(snap: stu)),
+            );
+          },
+          child: Text('View Documents'),
+          style: ElevatedButton.styleFrom(backgroundColor: Colors.black)),
+    );
   }
 }
