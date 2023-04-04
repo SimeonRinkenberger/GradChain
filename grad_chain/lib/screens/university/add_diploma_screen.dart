@@ -191,19 +191,6 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
               title: const Text('Upload diploma for',
                   style: TextStyle(color: Color.fromARGB(255, 75, 75, 75))),
               centerTitle: false,
-              actions: [
-                TextButton(
-                  onPressed: () => signUpStudent(user!.uid, user!.username),
-                  child: const Text(
-                    'Upload',
-                    style: TextStyle(
-                      color: Colors.blueAccent,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                )
-              ],
             ),
             body: SingleChildScrollView(
               child: Column(
@@ -222,19 +209,19 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
                       children: [
                         // svg image (we use a package called flutter_svg to show svg images
                         const SizedBox(
-                          height: 50,
-                          width: 100,
+                          height: 40,
+                          width: 50,
                         ),
 
                         Text(
                           'Student information',
                           style: TextStyle(
                             color: Colors.grey[700],
-                            fontSize: 42,
+                            fontSize: 32,
                           ),
                         ),
                         const SizedBox(
-                          height: 100,
+                          height: 60,
                           width: 200,
                         ),
                       ],
@@ -273,18 +260,17 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
                         height: 50,
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.3,
+                        width: MediaQuery.of(context).size.width * 0.4,
                         height: MediaQuery.of(context).size.height * 0.10,
-                        child: TextField(
-                          controller: _emailController,
-                          decoration: const InputDecoration(
-                              hintText: 'Enter student email',
-                              border: InputBorder.none),
-                          maxLines: 8,
+                        child: TextFieldInput(
+                          textEditingController: _emailController,
+                          textInputType: TextInputType.text,
+                          hintText: 'Enter student email',
+                          isPass: false,
                         ),
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.3,
+                        width: MediaQuery.of(context).size.width * 0.4,
                         height: MediaQuery.of(context).size.height * 0.10,
                         child: TextFieldInput(
                           textEditingController: _passwordController,
@@ -294,35 +280,52 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
                         ),
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.3,
+                        width: MediaQuery.of(context).size.width * 0.4,
                         height: MediaQuery.of(context).size.height * 0.10,
-                        child: TextField(
-                          controller: _usernameController,
-                          decoration: const InputDecoration(
-                              hintText: 'Enter student username',
-                              border: InputBorder.none),
-                          maxLines: 8,
+                        child: TextFieldInput(
+                          textEditingController: _usernameController,
+                          textInputType: TextInputType.text,
+                          hintText: 'Enter student username',
+                          isPass: false,
                         ),
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.3,
+                        width: MediaQuery.of(context).size.width * 0.4,
                         height: MediaQuery.of(context).size.height * 0.10,
-                        child: TextField(
-                          controller: _bioController,
-                          decoration: const InputDecoration(
-                              hintText: 'Enter student bio',
-                              border: InputBorder.none),
-                          maxLines: 8,
+                        child: TextFieldInput(
+                          textEditingController: _bioController,
+                          textInputType: TextInputType.text,
+                          hintText: 'Enter student bio',
+                          isPass: false,
                         ),
                       ),
                     ],
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        height: 20,
+                        width: 50,
+                      ),
+                      Text(
+                        'Diploma information',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Colors.grey[700],
+                          fontSize: 32,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 40,
                   ),
 
                   // END OF SIGN UP FORM
 
                   // START OF THE DIPLOMA UPLOAD FORM
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // CircleAvatar(
@@ -331,19 +334,59 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
                       //   ),
                       // ),
 
+                      // THIS SHOWS THE IMAGE THAT HAS BEEN JUST SELECTED
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      SizedBox(
+                        height: 60,
+                        width: 60,
+                        child: AspectRatio(
+                          aspectRatio: 487 / 451,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: MemoryImage(_file!),
+                                fit: BoxFit.fill,
+                                alignment: FractionalOffset.topCenter,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.15,
+                      ),
                       // This is the description TextBox
                       Column(
                         children: [
                           SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.3,
+                            width: MediaQuery.of(context).size.width * 0.4,
                             height: MediaQuery.of(context).size.height * 0.10,
-                            child: TextField(
-                              controller: _descriptionController,
-                              decoration: const InputDecoration(
-                                  hintText: 'Diploma description',
-                                  border: InputBorder.none),
-                              maxLines: 8,
+                            child: TextFieldInput(
+                              textEditingController: _descriptionController,
+                              textInputType: TextInputType.text,
+                              hintText: 'Enter diploma degree',
+                              isPass: false,
                             ),
+                          ),
+                          SizedBox(
+                            height: 80,
+                          ),
+                          TextButton(
+                            onPressed: () =>
+                                signUpStudent(user!.uid, user!.username),
+                            child: const Text(
+                              'Create',
+                              style: TextStyle(
+                                color: Colors.blueAccent,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 100,
                           ),
                           // SizedBox(
                           //   width: MediaQuery.of(context).size.width * 0.3,
@@ -392,23 +435,6 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
                         ],
                       ),
 
-                      // THIS SHOWS THE IMAGE THAT HAS BEEN JUST SELECTED
-                      SizedBox(
-                        height: 45,
-                        width: 45,
-                        child: AspectRatio(
-                          aspectRatio: 487 / 451,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: MemoryImage(_file!),
-                                fit: BoxFit.fill,
-                                alignment: FractionalOffset.topCenter,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
                       const Divider(),
                     ],
                   )
