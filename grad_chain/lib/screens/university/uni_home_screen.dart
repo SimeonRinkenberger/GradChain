@@ -9,6 +9,8 @@ import 'package:grad_chain/utils/list_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:grad_chain/models/user.dart' as model;
 
+import '../../models/student.dart';
+import '../../resources/auth_methods.dart';
 import '../../widgets/constrants.dart';
 import '../index/home_screen.dart';
 import '../../utils/my_box.dart';
@@ -27,6 +29,7 @@ class _UniHomeScreenState extends State<UniHomeScreen> {
   @override
   Widget build(BuildContext context) {
     final model.User? user = Provider.of<UserProvider>(context).getUser;
+    final Student? stu = Provider.of<UserProvider>(context).getStu;
 
     return Scaffold(
       backgroundColor: defaultBackgroundColor,
@@ -45,7 +48,11 @@ class _UniHomeScreenState extends State<UniHomeScreen> {
                 children: [
                   DrawerHeader(
                     child: ListTile(
-                      leading: Icon(Icons.person),
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(
+                          user!.photoUrl,
+                        ),
+                      ),
                       //leading: Image.network('${user.photoUrl}'),
                       title: Text(
                         //'hu',
@@ -55,32 +62,33 @@ class _UniHomeScreenState extends State<UniHomeScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 300,
+                    height: MediaQuery.of(context).size.height * 0.4,
                   ),
+                  // Padding(
+                  //   padding: tilePadding,
+                  //   child: ListTile(
+                  //     leading: OutlinedButton(
+                  //       onPressed: () {
+                  //         FlutterClipboard.copy('${user.username}');
+                  //       },
+                  //       child: Icon(Icons.share),
+                  //     ),
+                  //     title: Text(
+                  //       'S H A R E',
+                  //       style: drawerTextColor,
+                  //     ),
+                  //   ),
+                  // ),
                   Padding(
                     padding: tilePadding,
                     child: ListTile(
                       leading: OutlinedButton(
-                        onPressed: () {
-                          FlutterClipboard.copy('${user.username}');
-                        },
-                        child: Icon(Icons.share),
-                      ),
-                      title: Text(
-                        'S H A R E',
-                        style: drawerTextColor,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: tilePadding,
-                    child: ListTile(
-                      leading: OutlinedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context as BuildContext,
+                        onPressed: () async {
+                          await AuthMethods().signOut();
+                          Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
-                                builder: (context) => LandingScreen()),
+                              builder: (context) => const LandingScreen(),
+                            ),
                           );
                         },
                         child: Icon(Icons.logout),
