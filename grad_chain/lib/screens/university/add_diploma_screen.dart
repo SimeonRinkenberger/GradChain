@@ -214,7 +214,7 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
                         ),
 
                         Text(
-                          '1.)  Student information',
+                          '1. Student information',
                           style: TextStyle(
                             color: Colors.grey[700],
                             fontSize: 32,
@@ -295,7 +295,7 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
                         child: TextFieldInput(
                           textEditingController: _bioController,
                           textInputType: TextInputType.text,
-                          hintText: 'Enter student bio',
+                          hintText: 'Enter student major',
                           isPass: false,
                         ),
                       ),
@@ -308,7 +308,7 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
                         width: 50,
                       ),
                       Text(
-                        '2.)  Diploma information',
+                        '2. Diploma information',
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           color: Colors.grey[700],
