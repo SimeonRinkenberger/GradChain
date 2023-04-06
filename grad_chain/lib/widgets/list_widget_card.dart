@@ -44,8 +44,9 @@ class _ListWidgetCardState extends State<ListWidgetCard> {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
                   builder: (context) => ViewDocument(
-                    stuPhoto: studentPhoto,
-                  ),
+                      stuPhoto: studentPhoto,
+                      user: user //Needed for back button to work properly
+                      ),
                 ),
               );
 
