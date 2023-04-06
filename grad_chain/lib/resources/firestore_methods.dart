@@ -107,7 +107,7 @@ class FirestoreMethods {
           await StorageMethods().uploadImageToStorage('diplomas', file, true);
 
       // CALL CLOUD FUNCTION HERE
-      //String bChainUrl = await uploadDiplomaToBlockChain(diplomaUrl);
+      String bChainUrl = await uploadDiplomaToBlockChain(diplomaUrl);
 
       String diplomaId = const Uuid().v1();
       Diploma diploma = Diploma(
