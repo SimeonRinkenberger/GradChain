@@ -7,21 +7,91 @@ import 'package:grad_chain/resources/storage_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 
 class FirestoreMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseFunctions _functions = FirebaseFunctions.instance;
 
+  final String url =
+      'https://us-central1-gradchain-55ffd.cloudfunctions.net/ipfs_upload';
+
+  // Future<String> uploadDiplomaToBlockChain(String diplomaUrl) async {
+  //   HttpsCallable callable = _functions.httpsCallable('ipfs_upload');
+
+  //   print(callable);
+  //   final resp = await callable.call(<String, dynamic>{
+  //     'url': diplomaUrl,
+  //   });
+  //   // resp will have the bChainUrl
+  //   print("result: ${resp.data}");
+  //   print(resp.data as String);
+  //   return resp.data as String;
+  //   return 'Test';
+  // }
+
+  // HTTP PACKAGE
+  // final String url =
+  //     'https://us-central1-gradchain-55ffd.cloudfunctions.net/ipfs_upload';
+
+  // Future<String> uploadDiplomaToBlockChain(String diplomaUrl) async {
+  //   final response = await http.post(
+  //     Uri.parse(url),
+  //     headers: {'Content-Type': 'application/json'},
+  //     body: {'url': diplomaUrl},
+  //   );
+  //   if (response.statusCode == 200) {
+  //     print(response.body);
+  //     return response.body;
+  //   } else {
+  //     throw Exception('Failed to send value to cloud function.');
+  //   }
+  // }
+
+  // HTTP PACKAGE
   Future<String> uploadDiplomaToBlockChain(String diplomaUrl) async {
-    HttpsCallable callable =
-        _functions.httpsCallable('uploadDiplomaToBlockChain');
-    final resp = await callable.call(<String, dynamic>{
-      'url': diplomaUrl,
-    });
-    // resp will have the bChainUrl
-    return resp.data;
-    // print("result: ${resp.data}");
+    final response = await http.post(Uri.parse(url), body: {'url': diplomaUrl});
+
+    print(response.statusCode);
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      print(response.body);
+      return response.body;
+    } else {
+      throw Exception('Failed to send value to cloud function.');
+    }
   }
+
+  // DIO PACKAGE
+  // final String url =
+  //     'https://us-central1-gradchain-55ffd.cloudfunctions.net/ipfs_upload';
+
+  // Future<String> uploadDiplomaToBlockChain(String diplomaUrl) async {
+  //   try {
+  //     final response = await Dio().post(
+  //       url,
+  //       data: {'url': diplomaUrl},
+  //       options: Options(
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //       ),
+  //     );
+
+  //     print(response.statusCode);
+
+  //     if (response.statusCode == 200 || response.statusCode == 204) {
+  //       print(response.data);
+  //       return response.data;
+  //     } else {
+  //       throw Exception('Failed to send value to cloud function.');
+  //     }
+  //   } catch (e) {
+  //     throw Exception('Failed to send value to cloud function.');
+  //   }
+  // }
 
   // upload diploma
   Future<String> uploadDiploma(
@@ -49,7 +119,8 @@ class FirestoreMethods {
         diplomaUrl: diplomaUrl,
         //profImage: profImage,
         claimed: [],
-        bChainUrl: 'testUrl',
+        bChainUrl:
+            'https://ipfs.io/ipfs/QmeCXNeAQY8yRkPeJtsdj5WaFuWEhWBmRL1XhPihqWL2wV',
       );
 
       _firestore.collection('diplomas').doc(diplomaId).set(
