@@ -7,6 +7,7 @@ import 'package:grad_chain/resources/firestore_methods.dart';
 import 'package:grad_chain/utils/colors.dart';
 //import 'package:grad_chain/utils/global_variables.dart';
 import 'package:grad_chain/utils/utils.dart';
+import 'package:grad_chain/widgets/view_document.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -28,36 +29,28 @@ class _ListWidgetCardState extends State<ListWidgetCard> {
   Widget build(BuildContext context) {
     final model.User? user = Provider.of<UserProvider>(context).getUser;
     final Student? stu = Provider.of<UserProvider>(context).getStu;
+    String studentPhoto = widget.snap[user != null ? 'photoUrl' : 'diplomaUrl'];
 
     final width = MediaQuery.of(context).size.width;
 
     return ListTile(
-        title: Text(widget.snap[user != null ? 'email' : 'description']),
-        trailing: Row(mainAxisSize: MainAxisSize.min, children: [
-          // IconButton(
-          //   icon: widget.snap['claimed'].contains(stu?.uid)
-          //       ? const Icon(
-          //           Icons.check,
-          //           color: Colors.red,
-          //         )
-          //       : const Icon(
-          //           Icons.check_box_outline_blank,
-          //         ),
-          //   onPressed: () {
-          //     // debugPrint(user.uid);
-          //     // debugPrint(widget.snap['diplomaId']);
-          //     // debugPrint(widget.snap['claimed'].toString());
-          //     FirestoreMethods().claimDiploma(
-          //       widget.snap['diplomaId'],
-          //       stu!.uid,
-          //       widget.snap['claimed'],
-          //     );
-          //   },
-          // ),
-          IconButton(
-            icon: Icon(Icons.remove),
-            onPressed: () {},
-          )
-        ]));
+        leading: CircleAvatar(
+            backgroundImage: NetworkImage(user != null
+                ? widget.snap['photoUrl']
+                : widget.snap['diplomaUrl'])),
+        title: Text(widget.snap[user != null ? 'username' : 'description']),
+        trailing: ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => ViewDocument(
+                    stuPhoto: studentPhoto,
+                  ),
+                ),
+              );
+
+              ;
+            },
+            child: Text('View Documents')));
   }
 }
