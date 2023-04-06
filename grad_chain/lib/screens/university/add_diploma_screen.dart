@@ -134,7 +134,7 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
       postDiploma(res[1], university);
     }
 
-    print(res);
+    //print(res);
   }
 
   // SELECT PROFILE PIC IMAGE FOR USER
