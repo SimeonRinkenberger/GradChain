@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:grad_chain/screens/login_screen.dart';
-import 'package:grad_chain/screens/signup_screen.dart';
+import 'package:grad_chain/screens/index/login_screen.dart';
+import 'package:grad_chain/screens/index/signup_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

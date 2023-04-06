@@ -6,33 +6,50 @@ import 'package:grad_chain/models/diploma.dart';
 import 'package:grad_chain/resources/storage_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 
 class FirestoreMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseFunctions _functions = FirebaseFunctions.instance;
 
-  // upload post
+  Future<String> uploadDiplomaToBlockChain(String diplomaUrl) async {
+    HttpsCallable callable =
+        _functions.httpsCallable('uploadDiplomaToBlockChain');
+    final resp = await callable.call(<String, dynamic>{
+      'url': diplomaUrl,
+    });
+    // resp will have the bChainUrl
+    return resp.data;
+    // print("result: ${resp.data}");
+  }
+
+  // upload diploma
   Future<String> uploadDiploma(
     String description,
     Uint8List file,
     String uid,
-    String username,
-    String profImage,
+    String university,
+    //String profImage,
   ) async {
     String res = "Some error ocurred";
     try {
       String diplomaUrl =
           await StorageMethods().uploadImageToStorage('diplomas', file, true);
 
+      // CALL CLOUD FUNCTION HERE
+      //String bChainUrl = await uploadDiplomaToBlockChain(diplomaUrl);
+
       String diplomaId = const Uuid().v1();
       Diploma diploma = Diploma(
         description: description,
         uid: uid,
-        username: username,
+        university: university,
         diplomaId: diplomaId,
         datePublished: DateTime.now(),
         diplomaUrl: diplomaUrl,
-        profImage: profImage,
+        //profImage: profImage,
         claimed: [],
+        bChainUrl: 'testUrl',
       );
 
       _firestore.collection('diplomas').doc(diplomaId).set(

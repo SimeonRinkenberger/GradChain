@@ -1,15 +1,17 @@
 import 'package:grad_chain/resources/auth_methods.dart';
-import 'package:grad_chain/screens/landing_screen.dart';
-import 'package:grad_chain/screens/signup_screen.dart';
+import 'package:grad_chain/responsive/university/uni_mobile_screen.dart';
+import 'package:grad_chain/responsive/university/uni_web_screen.dart';
+import 'package:grad_chain/screens/index/landing_screen.dart';
+import 'package:grad_chain/screens/index/signup_screen.dart';
 import 'package:grad_chain/utils/colors.dart';
 import 'package:grad_chain/utils/utils.dart';
 import 'package:grad_chain/widgets/text_field_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../responsive/mobile_screen_layout.dart';
-import '../responsive/responsive_layout_screen.dart';
-import '../responsive/web_screen_layout.dart';
+import '../../responsive/student/mobile_screen_layout.dart';
+import '../../responsive/index/responsive_layout_screen.dart';
+import '../../responsive/student/web_screen_layout.dart';
 
 class StudentLoginScreen extends StatefulWidget {
   const StudentLoginScreen({super.key});
@@ -46,6 +48,8 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
           builder: (context) => const ResponsiveLayout(
             mobileScreenLayout: MobileScreenLayout(),
             webScreenLayout: WebScreenLayout(),
+            uniMobileScreenLayout: UniMobileScreen(),
+            uniWebScreenLayout: UniWebScreen(),
           ),
         ),
       );
@@ -124,7 +128,7 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Text(
-                      'Are you new here? Create an account below.',
+                      'Not a student? Click here.',
                       style: TextStyle(color: Colors.grey[700]),
                     ),
                   ),

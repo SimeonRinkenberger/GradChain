@@ -1,16 +1,16 @@
 import 'package:grad_chain/resources/auth_methods.dart';
-import 'package:grad_chain/screens/signup_screen.dart';
+import 'package:grad_chain/responsive/student/mobile_screen_layout.dart';
+import 'package:grad_chain/screens/index/signup_screen.dart';
 import 'package:grad_chain/utils/colors.dart';
 import 'package:grad_chain/utils/utils.dart';
 import 'package:grad_chain/widgets/text_field_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../responsive/uni_mobile_screen.dart';
-import '../responsive/responsive_layout_screen.dart';
-import '../responsive/uni_responsive_layout.dart';
-import '../responsive/uni_web_screen.dart';
-import '../responsive/web_screen_layout.dart';
+import 'package:grad_chain/responsive/university/uni_mobile_screen.dart';
+import 'package:grad_chain/responsive/index/responsive_layout_screen.dart';
+import 'package:grad_chain/responsive/university/uni_web_screen.dart';
+import 'package:grad_chain/responsive/student/web_screen_layout.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -44,9 +44,11 @@ class _LoginScreenState extends State<LoginScreen> {
     if (res == "success") {
       var push = Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const UniResponsiveLayout(
-            UniMobileScreen: UniMobileScreen(),
-            UniWebScreen: UniWebScreen(),
+          builder: (context) => const ResponsiveLayout(
+            mobileScreenLayout: MobileScreenLayout(),
+            webScreenLayout: WebScreenLayout(),
+            uniMobileScreenLayout: UniMobileScreen(),
+            uniWebScreenLayout: UniWebScreen(),
           ),
         ),
       );
@@ -125,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     child: Text(
-                      'Are you new here? Create an account below.',
+                      'Are you new here? Create an account here.',
                       style: TextStyle(color: Colors.grey[700]),
                     ),
                   ),
