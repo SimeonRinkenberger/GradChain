@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:grad_chain/models/student.dart';
+import 'package:grad_chain/models/student.dart' as model;
 import 'package:grad_chain/models/user.dart' as model;
 
 import 'package:grad_chain/resources/storage_methods.dart';
@@ -31,6 +32,26 @@ class AuthMethods {
     res.add(model.User.fromSnap(documentSnapshot));
     return res;
   }
+/*
+  Future<List> getStuDetails() async {
+    User currentStu = _auth.currentStudent!;
+    List res = <dynamic>[];
+
+    DocumentSnapshot documentSnapshot =
+        await _firestore.collection('students').doc(currentStu.uid).get();
+
+    if (documentSnapshot.data() == null) {
+      DocumentSnapshot documentSnapshot =
+          await _firestore.collection('students').doc(currentStu.uid).get();
+      res.add(0);
+      res.add(Student.fromSnap(documentSnapshot));
+      return res;
+    }
+    res.add(1);
+    res.add(model.Student.fromSnap(documentSnapshot));
+    return res;
+  }
+  */
 
   // sign up user function
   Future<List> signUpUser({

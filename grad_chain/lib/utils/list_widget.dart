@@ -71,7 +71,7 @@ class _ListWidgetState extends State<ListWidget> {
                   child: Column(
                       //crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        //Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
+                        Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                         Text(
                           user != null ? uniTitle : stuTitle,
                           style: TextStyle(

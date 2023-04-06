@@ -11,7 +11,7 @@ import 'package:grad_chain/widgets/view_document.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../models/student.dart' as model;
+import '../models/student.dart';
 
 class ListWidgetCard extends StatefulWidget {
   final snap;
@@ -28,14 +28,16 @@ class _ListWidgetCardState extends State<ListWidgetCard> {
   @override
   Widget build(BuildContext context) {
     final model.User? user = Provider.of<UserProvider>(context).getUser;
-    final model.Student? stu = Provider.of<UserProvider>(context).getStu;
-    String studentPhoto = widget.snap['photoUrl'];
+    final Student? stu = Provider.of<UserProvider>(context).getStu;
+    String studentPhoto = widget.snap[user != null ? 'photoUrl' : 'diplomaUrl'];
 
     final width = MediaQuery.of(context).size.width;
 
     return ListTile(
         leading: CircleAvatar(
-            backgroundImage: NetworkImage(widget.snap['photoUrl'])),
+            backgroundImage: NetworkImage(user != null
+                ? widget.snap['photoUrl']
+                : widget.snap['diplomaUrl'])),
         title: Text(widget.snap[user != null ? 'username' : 'description']),
         trailing: ElevatedButton(
             onPressed: () {
@@ -46,6 +48,7 @@ class _ListWidgetCardState extends State<ListWidgetCard> {
                   ),
                 ),
               );
+
               ;
             },
             child: Text('View Documents')));
