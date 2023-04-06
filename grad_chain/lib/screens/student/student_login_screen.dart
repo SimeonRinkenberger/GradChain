@@ -154,15 +154,13 @@ class _StudentLoginScreenState extends State<StudentLoginScreen> {
                       ),
                     ],
                   ),
+                  Expanded(
+                    child: Divider(thickness: 0.5, color: Colors.grey[400]),
+                  ),
                 ],
               ),
             ),
-            Expanded(
-              child: Divider(
-                thickness: 0.5,
-                color: Colors.grey[400],
-              ),
-            ),
+
             /*Container(
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,

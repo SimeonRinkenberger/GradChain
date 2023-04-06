@@ -143,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           //  horizontal: 4,
                           //),
                           child: const Text(
-                            "Sign up",
+                            "Sign up ",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.blue,
@@ -153,15 +153,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
+                  Expanded(
+                    child: Divider(thickness: 0.5, color: Colors.grey[400]),
+                  ),
                 ],
               ),
             ),
-            Expanded(
-              child: Divider(
-                thickness: 0.5,
-                color: Colors.grey[400],
-              ),
-            ),
+
             /*Container(
                     padding: const EdgeInsets.symmetric(
                       vertical: 8,

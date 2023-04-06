@@ -15,10 +15,9 @@ import '../models/student.dart';
 
 class ListWidgetCard extends StatefulWidget {
   final snap;
-  const ListWidgetCard({
-    Key? key,
-    required this.snap,
-  }) : super(key: key);
+  //final snap2;
+
+  const ListWidgetCard({Key? key, required this.snap}) : super(key: key);
 
   @override
   State<ListWidgetCard> createState() => _ListWidgetCardState();
@@ -30,6 +29,8 @@ class _ListWidgetCardState extends State<ListWidgetCard> {
     final model.User? user = Provider.of<UserProvider>(context).getUser;
     final Student? stu = Provider.of<UserProvider>(context).getStu;
     String studentPhoto = widget.snap[user != null ? 'photoUrl' : 'diplomaUrl'];
+    String placeHolderPhoto =
+        "https://cdn.shopify.com/s/files/1/1699/4809/products/SD_Penn_Foster_High_School_Diploma_Converted_-_Copy_1024x1024@2x.jpg?v=1556304897";
 
     final width = MediaQuery.of(context).size.width;
 
@@ -44,12 +45,10 @@ class _ListWidgetCardState extends State<ListWidgetCard> {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
                   builder: (context) => ViewDocument(
-                    stuPhoto: studentPhoto,
-                  ),
+                      stuPhoto: user != null ? placeHolderPhoto : studentPhoto,
+                      user: user),
                 ),
               );
-
-              ;
             },
             child: Text('View Documents')));
   }
