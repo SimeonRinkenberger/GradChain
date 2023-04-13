@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grad_chain/screens/index/home_screen.dart';
 import 'package:grad_chain/screens/index/login_screen.dart';
 import 'package:grad_chain/screens/index/signup_screen.dart';
+import 'package:grad_chain/screens/index/verify_dip_screen.dart';
 import 'package:grad_chain/screens/student/student_login_screen.dart';
 
 class LandingScreen extends StatefulWidget {
@@ -84,15 +85,16 @@ class _LandingScreen extends State<LandingScreen> {
                 SizedBox(
                   width: 30,
                 ),
-                // ElevatedButton(
-                //   onPressed: () {
-                //     Navigator.push(
-                //       context,
-                //       MaterialPageRoute(builder: (context) => HomeScreen()),
-                //     );
-                //   },
-                //   child: Text('Employer'),
-                // ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => VerifyDipScreen()),
+                    );
+                  },
+                  child: Text('Verify'),
+                ),
               ]),
             ),
           ),
