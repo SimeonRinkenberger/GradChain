@@ -34,24 +34,23 @@ class _ListWidgetCardState extends State<ListWidgetCard> {
     final width = MediaQuery.of(context).size.width;
 
     return ListTile(
-        leading: CircleAvatar(
-            backgroundImage: NetworkImage(user != null
-                ? widget.snap['photoUrl']
-                : widget.snap['diplomaUrl'])),
-        title: Text(widget.snap[user != null ? 'username' : 'description']),
-        trailing: ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => ViewDocument(
-                      stuPhoto: studentPhoto,
-                      user: user //Needed for back button to work properly
-                      ),
-                ),
-              );
-
-              ;
-            },
-            child: Text('View Documents')));
+      leading: CircleAvatar(
+          backgroundImage: NetworkImage(user != null
+              ? widget.snap['photoUrl']
+              : widget.snap['diplomaUrl'])),
+      title: Text(widget.snap[user != null ? 'username' : 'description']),
+      trailing: ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => ViewDocument(
+                    stuPhoto: studentPhoto,
+                    user: user //Needed for back button to work properly
+                    ),
+              ),
+            );
+          },
+          child: Text('View Documents')),
+    );
   }
 }

@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:grad_chain/models/student.dart';
 import 'package:grad_chain/models/student.dart' as model;
 import 'package:grad_chain/models/user.dart' as model;
@@ -215,6 +216,7 @@ class AuthMethods {
 
   Future<void> signOut() async {
     await _auth.signOut();
+    await DefaultCacheManager().emptyCache();
     print('user signed out');
   }
 }

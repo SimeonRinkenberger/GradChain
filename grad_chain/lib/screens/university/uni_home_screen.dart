@@ -1,6 +1,7 @@
 import 'package:clipboard/clipboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:grad_chain/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:grad_chain/screens/index/landing_screen.dart';
@@ -17,6 +18,7 @@ import '../../utils/my_box.dart';
 import '../../utils/my_title.dart';
 import 'package:grad_chain/widgets/constrants.dart';
 import 'package:grad_chain/utils/list_widget.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class UniHomeScreen extends StatefulWidget {
   const UniHomeScreen({super.key});

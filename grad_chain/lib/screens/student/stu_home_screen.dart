@@ -17,6 +17,7 @@ import '../../utils/my_box.dart';
 import '../../utils/my_title.dart';
 import 'package:grad_chain/widgets/constrants.dart';
 import 'package:grad_chain/utils/list_widget.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 class StuHomeScreen extends StatefulWidget {
   const StuHomeScreen({super.key});
@@ -68,7 +69,7 @@ class _StuHomeScreenState extends State<StuHomeScreen> {
                   //   child: ListTile(
                   //     leading: OutlinedButton(
                   //       onPressed: () {
-                  //         FlutterClipboard.copy('${stu.username}');
+                  //         FlutterClipboard.copy('${stu.photoUrl}');
                   //       },
                   //       child: Icon(Icons.share),
                   //     ),

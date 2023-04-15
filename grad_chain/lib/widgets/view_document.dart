@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:js';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -13,6 +14,7 @@ import 'package:grad_chain/models/user.dart' as model;
 import '../models/student.dart';
 import '../providers/user_provider.dart';
 import '../utils/list_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ViewDocument extends StatelessWidget {
   final stuPhoto;
@@ -38,6 +40,17 @@ class ViewDocument extends StatelessWidget {
                             user != null ? UniWebScreen() : WebScreenLayout()));
               },
             )),
-        body: Center(child: Image.network(stuPhoto)));
+        body: Center(
+          child: GestureDetector(
+            onTap: () async {
+              if (await canLaunch(stuPhoto)) {
+                await launch(stuPhoto);
+              } else {
+                throw 'Could not download';
+              }
+            },
+            child: Image.network(stuPhoto),
+          ),
+        ));
   }
 }
