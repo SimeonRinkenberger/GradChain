@@ -53,9 +53,9 @@ class _StuHomeScreenState extends State<StuHomeScreen> {
                         ),
                       ),
                       //leading: Image.network('${user.photoUrl}'),
-                      title: Text(
+                      title: SelectableText(
                         //'hu',
-                        stu.username,
+                        'User: ' + stu.username + '\n\nStudent Id: ' + stu.uid,
                         style: drawerTextColor,
                       ),
                     ),

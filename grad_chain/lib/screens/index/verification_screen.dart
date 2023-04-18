@@ -60,7 +60,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
           if (description.length > 1) {
             setState(() {
               dipUrl = docSnapshot.data()['diplomaUrl'];
-              dipInfo = docSnapshot.data()['description'] + 'is verified';
+              dipInfo = docSnapshot.data()['description'] + ' is verified';
             });
           } else {
             setState(() {
