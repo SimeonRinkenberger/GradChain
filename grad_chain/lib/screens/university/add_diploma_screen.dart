@@ -24,11 +24,6 @@ class AddDiplomaScreen extends StatefulWidget {
 class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
   Uint8List? _file;
   final TextEditingController _descriptionController = TextEditingController();
-  // final TextEditingController _descriptionController2 = TextEditingController();
-  // final TextEditingController _descriptionController3 = TextEditingController();
-  // final TextEditingController _descriptionController4 = TextEditingController();
-  // final TextEditingController _descriptionController5 = TextEditingController();
-  // final TextEditingController _descriptionController6 = TextEditingController();
 
   // CREATE STUDENT CONTROLLERS
   final TextEditingController _emailController = TextEditingController();
@@ -39,13 +34,13 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
   bool _isLoading = false;
 
   void postDiploma(
-    String uid,
+    String studentId,
     String university,
     //String profImage,
   ) async {
     try {
-      String res = await FirestoreMethods()
-          .uploadDiploma(_descriptionController.text, _file!, uid, university);
+      String res = await FirestoreMethods().uploadDiploma(
+          _descriptionController.text, _file!, studentId, university);
 
       if (res == 'success') {
         setState(() {
@@ -157,11 +152,6 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
     super.dispose();
     // DIPLOMA FORM CONTROLLERS
     _descriptionController.dispose();
-    // _descriptionController2.dispose();
-    // _descriptionController3.dispose();
-    // _descriptionController4.dispose();
-    // _descriptionController5.dispose();
-    // _descriptionController6.dispose();
 
     // SIGN UP FORM CONTROLLERS
     _emailController.dispose();

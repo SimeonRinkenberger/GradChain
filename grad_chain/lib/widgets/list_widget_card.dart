@@ -40,11 +40,20 @@ class _ListWidgetCardState extends State<ListWidgetCard> {
     String studentId = widget.snap['uid'];
     //String studentUniversity = widget.snap[user != null ? 'username' : ''];
 
+    String uniUsername = '';
+    String studentId = '';
+
+    // if (user != null) {
+    //   String uniUsername = user.username;
+    //   String studentId = widget.snap['uid'];
+    // }
+
     final width = MediaQuery.of(context).size.width;
 
     print(widget.snap['diplomaUrl']);
 
     return ListTile(
+
       leading: CircleAvatar(
           backgroundImage: NetworkImage(
               widget.snap[user != null ? 'photoUrl' : 'diplomaUrl'])),
@@ -81,5 +90,6 @@ class _ListWidgetCardState extends State<ListWidgetCard> {
         ],
       ),
     );
+
   }
 }

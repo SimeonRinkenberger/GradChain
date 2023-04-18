@@ -14,43 +14,10 @@ class FirestoreMethods {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseFunctions _functions = FirebaseFunctions.instance;
 
-  final String url =
-      'https://us-central1-gradchain-55ffd.cloudfunctions.net/ipfs_upload';
-
-  // Future<String> uploadDiplomaToBlockChain(String diplomaUrl) async {
-  //   HttpsCallable callable = _functions.httpsCallable('ipfs_upload');
-
-  //   print(callable);
-  //   final resp = await callable.call(<String, dynamic>{
-  //     'url': diplomaUrl,
-  //   });
-  //   // resp will have the bChainUrl
-  //   print("result: ${resp.data}");
-  //   print(resp.data as String);
-  //   return resp.data as String;
-  //   return 'Test';
-  // }
-
-  // HTTP PACKAGE
-  // final String url =
-  //     'https://us-central1-gradchain-55ffd.cloudfunctions.net/ipfs_upload';
-
-  // Future<String> uploadDiplomaToBlockChain(String diplomaUrl) async {
-  //   final response = await http.post(
-  //     Uri.parse(url),
-  //     headers: {'Content-Type': 'application/json'},
-  //     body: {'url': diplomaUrl},
-  //   );
-  //   if (response.statusCode == 200) {
-  //     print(response.body);
-  //     return response.body;
-  //   } else {
-  //     throw Exception('Failed to send value to cloud function.');
-  //   }
-  // }
-
   // HTTP PACKAGE
   Future<String> uploadDiplomaToBlockChain(String diplomaUrl) async {
+    final String url = 'https://ipfs-file-upload-5oqtywqtuq-uc.a.run.app';
+
     final response = await http.post(Uri.parse(url), body: {'url': diplomaUrl});
 
     print(response.statusCode);
@@ -64,40 +31,11 @@ class FirestoreMethods {
     }
   }
 
-  // DIO PACKAGE
-  // final String url =
-  //     'https://us-central1-gradchain-55ffd.cloudfunctions.net/ipfs_upload';
-
-  // Future<String> uploadDiplomaToBlockChain(String diplomaUrl) async {
-  //   try {
-  //     final response = await Dio().post(
-  //       url,
-  //       data: {'url': diplomaUrl},
-  //       options: Options(
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
-  //       ),
-  //     );
-
-  //     print(response.statusCode);
-
-  //     if (response.statusCode == 200 || response.statusCode == 204) {
-  //       print(response.data);
-  //       return response.data;
-  //     } else {
-  //       throw Exception('Failed to send value to cloud function.');
-  //     }
-  //   } catch (e) {
-  //     throw Exception('Failed to send value to cloud function.');
-  //   }
-  // }
-
   // upload diploma
   Future<String> uploadDiploma(
     String description,
     Uint8List file,
-    String uid,
+    String studentId,
     String university,
     //String profImage,
   ) async {
@@ -110,22 +48,30 @@ class FirestoreMethods {
       //String bChainUrl = await uploadDiplomaToBlockChain(diplomaUrl);
 
       String diplomaId = const Uuid().v1();
+
       Diploma diploma = Diploma(
         description: description,
-        uid: uid,
+        studentId: studentId,
         university: university,
         diplomaId: diplomaId,
         datePublished: DateTime.now(),
         diplomaUrl: diplomaUrl,
-        //profImage: profImage,
         claimed: [],
-        bChainUrl:
-            'https://ipfs.io/ipfs/QmeCXNeAQY8yRkPeJtsdj5WaFuWEhWBmRL1XhPihqWL2wV',
+        bChainHash: '',
       );
 
       _firestore.collection('diplomas').doc(diplomaId).set(
             diploma.toJson(),
           );
+
+      // CALL CLOUD FUNCTION HERE
+      String bChainDiplomaHash = await uploadDiplomaToBlockChain(diplomaUrl);
+
+      final updatedDiploma = <String, String>{
+        "bChainHash": bChainDiplomaHash,
+      };
+
+      _firestore.collection('diplomas').doc(diplomaId).set(updatedDiploma);
 
       res = 'success';
     } catch (e) {

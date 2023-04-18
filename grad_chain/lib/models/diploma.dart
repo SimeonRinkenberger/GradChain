@@ -2,36 +2,35 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Diploma {
   final String description;
-  final String uid;
+  final String studentId;
   final String university;
   final String diplomaId;
   final DateTime datePublished;
   final String diplomaUrl;
-  //final String profImage;
   final claimed;
-  final String bChainUrl;
+  final String bChainHash;
 
   const Diploma({
     required this.description,
-    required this.uid,
+    required this.studentId,
     required this.university,
     required this.claimed,
     required this.diplomaId,
     required this.datePublished,
     required this.diplomaUrl,
-    required this.bChainUrl,
+    required this.bChainHash,
     //required this.profImage,
   });
 
   Map<String, dynamic> toJson() => {
         "description": description,
-        "uid": uid,
+        "studentId": studentId,
         "claimed": claimed,
         "university": university,
         "diplomaId": diplomaId,
         "datePublished": datePublished,
         'diplomaUrl': diplomaUrl,
-        "bChainUrl": bChainUrl,
+        "bChainHash": bChainHash,
         //'profImage': profImage
       };
 
@@ -40,13 +39,13 @@ class Diploma {
 
     return Diploma(
       description: snapshot["description"],
-      uid: snapshot["uid"],
+      studentId: snapshot["studentId"],
       claimed: snapshot["claimed"],
       diplomaId: snapshot["diplomaId"],
       datePublished: snapshot["datePublished"],
       university: snapshot["university"],
       diplomaUrl: snapshot['diplomaUrl'],
-      bChainUrl: snapshot["bChainUrl"],
+      bChainHash: snapshot["bChainHash"],
       //profImage: snapshot['profImage'],
     );
   }

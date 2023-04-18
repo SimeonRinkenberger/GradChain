@@ -84,7 +84,6 @@ class _ListWidgetState extends State<ListWidget> {
                           ),
                         ),
                         SizedBox(height: 5),
-
                         // List of items
 
                         ListView.builder(
