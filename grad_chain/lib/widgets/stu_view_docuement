@@ -11,26 +11,25 @@ import 'package:provider/provider.dart';
 import '../models/student.dart';
 import '../providers/user_provider.dart';
 
-class ViewDocument extends StatefulWidget {
-  final stuPhoto;
+class StudentViewDocument extends StatefulWidget {
   final user;
-  final snap;
+  final stuuid;
 
-  ViewDocument({Key? key, this.stuPhoto, this.user, this.snap})
+  StudentViewDocument({Key? key, this.user, this.stuuid})
       : super(key: key);
 
   @override
-  State<ViewDocument> createState() => _ViewDocumentState();
+  State<StudentViewDocument> createState() => _StudentViewDocumentState();
 }
 
-class _ViewDocumentState extends State<ViewDocument> {
+class _StudentViewDocumentState extends State<StudentViewDocument> {
   @override
   Widget build(BuildContext context) {
     final Student? stu = Provider.of<UserProvider>(context).getStu;
 
     var dipQuery = FirebaseFirestore.instance
         .collection('diplomas')
-        .where('uid', isEqualTo: widget.snap['uid'])
+        .where('uid', isEqualTo: widget.stuuid)
         .snapshots();
 
     return Scaffold(
@@ -41,20 +40,19 @@ class _ViewDocumentState extends State<ViewDocument> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => widget.user != null
-                            ? UniWebScreen()
-                            : WebScreenLayout()));
+                        builder: (context) => 
+                             WebScreenLayout()));
               },
             )),
         body: StreamBuilder(
-            stream: dipQuery,
-            builder: (context,
-                AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting)
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-
+             stream: dipQuery,
+             builder: (context,
+                 AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+               if (snapshot.connectionState == ConnectionState.waiting)
+                 return const Center(
+                   child: CircularProgressIndicator(),
+                 );
+        //     body:
               print(snapshot.data!.docs.length.toString());
               return Container(
                   decoration: BoxDecoration(
@@ -65,7 +63,7 @@ class _ViewDocumentState extends State<ViewDocument> {
                       child: Column(children: [
                     Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0)),
                     Text(
-                      'List of Diplomas for: ' + widget.snap['username'],
+                      'List of Diplomas',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
