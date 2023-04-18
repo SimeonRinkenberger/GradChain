@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grad_chain/screens/index/home_screen.dart';
 import 'package:grad_chain/screens/index/login_screen.dart';
 import 'package:grad_chain/screens/index/signup_screen.dart';
+import 'package:grad_chain/screens/index/verification_screen.dart';
 import 'package:grad_chain/screens/index/verify_dip_screen.dart';
 import 'package:grad_chain/screens/student/student_login_screen.dart';
 
@@ -89,8 +90,7 @@ class _LandingScreen extends State<LandingScreen> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => VerifyDipScreen()),
+                      MaterialPageRoute(builder: (context) => VerifyScreen()),
                     );
                   },
                   child: Text('Verify'),
