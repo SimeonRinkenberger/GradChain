@@ -1,172 +1,6 @@
-/* import 'dart:typed_data';
-
-import 'package:flutter/material.dart';
-import 'package:grad_chain/screens/index/home_screen.dart';
-import 'package:grad_chain/screens/index/login_screen.dart';
-import 'package:grad_chain/screens/index/signup_screen.dart';
-import 'package:grad_chain/screens/index/verify_dip_screen.dart';
-import 'package:grad_chain/screens/student/student_login_screen.dart';
-import 'package:image_picker/image_picker.dart';
-
-import '../../utils/utils.dart';
-
-class verifyDipScreen extends StatefulWidget {
-  const verifyDipScreen({Key? key}) : super(key: key);
-  @override
-  State<verifyDipScreen> createState() => _verifyDipScreen();
-}
-
-class _verifyDipScreen extends State<verifyDipScreen> {
-  Uint8List? _image;
-  bool _isLoading = false;
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-  }
-
-  void selectImage() async {
-    Uint8List im = await pickImage(ImageSource.gallery);
-    setState(() {
-      _image = im;
-    });
-  }
-
-  void signUpUser() async {
-    setState(() {
-      _isLoading = true;
-    });
-
-    setState(() {
-      _isLoading = false;
-    });
-
-    @override
-    Widget build(BuildContext context) {
-      return Scaffold(
-        backgroundColor: Color.fromARGB(255, 219, 222, 219),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            AspectRatio(
-              aspectRatio: 16 / 3,
-              child: Container(
-                child:
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  //Grad Chain
-                  Image.asset(
-                    'assets/images/gradchain_logo.png',
-                    height: 250,
-                    width: 450,
-                    fit: BoxFit.fitWidth,
-                  ),
-                ]),
-              ),
-            ),
-            SizedBox(height: 10),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-              //Block Chain For Deplomas
-              Text(
-                'Verify A diploma!',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ]),
-
-            SizedBox(height: 10),
-            //add file
-            SizedBox(height: 10),
-            Container(
-              child: AspectRatio(
-                aspectRatio: 16 / 3,
-                child:
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  IconButton(
-                    icon: const Icon(
-                      Icons.upload,
-                      color: Color.fromARGB(255, 78, 78, 78),
-                      size: 30,
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()),
-                      );
-                    },
-                  ),
-                ]),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color.fromARGB(255, 219, 222, 219),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          AspectRatio(
-            aspectRatio: 16 / 3,
-            child: Container(
-              child:
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                //Grad Chain
-                Image.asset(
-                  'assets/images/gradchain_logo.png',
-                  height: 250,
-                  width: 450,
-                  fit: BoxFit.fitWidth,
-                ),
-              ]),
-            ),
-          ),
-          SizedBox(height: 10),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            //Block Chain For Deplomas
-            Text(
-              'Verify A diploma!',
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ]),
-
-          SizedBox(height: 10),
-          //add file
-          SizedBox(height: 10),
-          Container(
-            child: AspectRatio(
-              aspectRatio: 16 / 3,
-              child:
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.upload,
-                    color: Color.fromARGB(255, 78, 78, 78),
-                    size: 30,
-                  ),
-                  onPressed: selectImage,
-                ),
-              ]),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-} */
-
 import 'dart:typed_data';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:grad_chain/widgets/constrants.dart';
 import 'package:image_picker/image_picker.dart';
@@ -179,6 +13,7 @@ import 'package:grad_chain/utils/colors.dart';
 import 'package:grad_chain/utils/utils.dart';
 
 import '../../resources/auth_methods.dart';
+import '../../resources/storage_methods.dart';
 import '../../widgets/text_field_input.dart';
 
 class VerifyDipScreen extends StatefulWidget {
@@ -194,6 +29,30 @@ class _VerifyDipScreenState extends State<VerifyDipScreen> {
   bool _isLoading = false;
   bool _isValid = true;
   //Icon check = Icon(Icons.check);
+
+  validateDiploma(String studentId) async {
+    print('Im in');
+    String diplomaUrl = await StorageMethods()
+        .uploadImageToStorageNew('verifiedDiplomas', _file!, true);
+    print(diplomaUrl);
+
+    // String bChainDiplomaHash = await FirestoreMethods().uploadDiplomaToBlockChain(diplomaUrl);
+
+    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    _firestore
+        .collection("diplomas")
+        .where("studentId", isEqualTo: studentId)
+        .get()
+        .then(
+      (querySnapshot) async {
+        print("Successfully completed");
+        for (var docSnapshot in querySnapshot.docs) {
+          print('${docSnapshot.id} => ${docSnapshot.data()}');
+          print(docSnapshot.data()['description']);
+        }
+      },
+    );
+  }
 
   _selectImage(BuildContext context) async {
     return showDialog(
@@ -251,9 +110,12 @@ class _VerifyDipScreenState extends State<VerifyDipScreen> {
   Widget build(BuildContext context) {
     return _file == null
         ? Center(
-            child: ElevatedButton(
+            child: ElevatedButton.icon(
               onPressed: () => _selectImage(context),
-              child: Icon(Icons.upload),
+              icon: Icon(
+                Icons.upload,
+              ),
+              label: Text('Upload a diploma'),
             ),
           )
         : Scaffold(
@@ -308,6 +170,22 @@ class _VerifyDipScreenState extends State<VerifyDipScreen> {
                             color: Colors.red, // add green color
                             size: 100)
                   ],
+                ),
+                Container(
+                  child: AspectRatio(
+                    aspectRatio: 16 / 3,
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 30,
+                          ),
+                          ElevatedButton(
+                            onPressed: () => validateDiploma(),
+                            child: Text('Upload to storage'),
+                          ),
+                        ]),
+                  ),
                 ),
               ],
             ),

@@ -31,7 +31,17 @@ class _ListWidgetCardState extends State<ListWidgetCard> {
     final Student? stu = Provider.of<UserProvider>(context).getStu;
     String studentPhoto = widget.snap[user != null ? 'photoUrl' : 'diplomaUrl'];
 
+    String uniUsername = '';
+    String studentId = '';
+
+    // if (user != null) {
+    //   String uniUsername = user.username;
+    //   String studentId = widget.snap['uid'];
+    // }
+
     final width = MediaQuery.of(context).size.width;
+
+    print(widget.snap['diplomaUrl']);
 
     return ListTile(
         leading: CircleAvatar(
@@ -39,19 +49,7 @@ class _ListWidgetCardState extends State<ListWidgetCard> {
                 ? widget.snap['photoUrl']
                 : widget.snap['diplomaUrl'])),
         title: Text(widget.snap[user != null ? 'username' : 'description']),
-        trailing: ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => ViewDocument(
-                      stuPhoto: studentPhoto,
-                      user: user //Needed for back button to work properly
-                      ),
-                ),
-              );
-
-              ;
-            },
-            child: Text('View Documents')));
+        trailing:
+            ElevatedButton(onPressed: () {}, child: Text('View Documents')));
   }
 }

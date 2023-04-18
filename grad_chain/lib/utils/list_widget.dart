@@ -61,6 +61,7 @@ class _ListWidgetState extends State<ListWidget> {
                 );
               }
 
+              print(snapshot.data!.docs.length.toString());
               return Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
@@ -80,7 +81,6 @@ class _ListWidgetState extends State<ListWidget> {
                           ),
                         ),
                         SizedBox(height: 5),
-
                         // List of items
                         ListView.builder(
                             shrinkWrap: true,

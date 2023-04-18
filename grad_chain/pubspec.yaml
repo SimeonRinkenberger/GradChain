@@ -38,11 +38,13 @@ dependencies:
   dio: ^5.1.1
   firebase_auth: ^4.2.9
   firebase_core: ^2.7.0
+  firebase_database: ^10.1.0
   firebase_storage: ^11.0.14
   flutter:
     sdk: flutter
   flutter_svg: ^2.0.2
   image_picker: ^0.8.6+3
+  path_provider: ^2.0.14
   provider: ^6.0.5
   uuid: ^3.0.7
 
@@ -68,6 +70,7 @@ flutter:
     - assets/ic_instagram.svg
     - assets/images/gradchain_logo.png
     - assets/images/CBU_Logo.png
+    - assets/filesDip/image.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
