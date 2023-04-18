@@ -33,19 +33,8 @@ class VerifyScreen extends StatefulWidget {
 }
 
 class _VerifyScreenState extends State<VerifyScreen> {
+  String dipUrl = '';
   String dipInfo = '';
-
-  void updateText(text) {
-    setState(() {
-      dipInfo = '$text';
-    });
-  }
-
-  void updateNotText() {
-    setState(() {
-      dipInfo = 'doesnt work';
-    });
-  }
 
   validateDiploma(String studentId) async {
     print('Im in');
@@ -58,7 +47,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
     final FirebaseFirestore _firestore = FirebaseFirestore.instance;
     _firestore
         .collection("diplomas")
-        .where("studentId", isEqualTo: studentId)
+        .where("uid", isEqualTo: studentId)
         .get()
         .then(
       (querySnapshot) async {
@@ -68,7 +57,16 @@ class _VerifyScreenState extends State<VerifyScreen> {
           print(docSnapshot.data()['description']);
           String description = docSnapshot.data()['description'];
           //print(description.length);
-          return true;
+          if (description.length > 1) {
+            setState(() {
+              dipUrl = docSnapshot.data()['diplomaUrl'];
+              dipInfo = docSnapshot.data()['description'];
+            });
+          } else {
+            setState(() {
+              dipInfo = 'Not verified';
+            });
+          }
         }
       },
     );
@@ -125,7 +123,6 @@ class _VerifyScreenState extends State<VerifyScreen> {
             TextButton(
               onPressed: () {
                 bool text = validateDiploma(_emailController.text);
-                print(text);
               },
               child: const Text(
                 'Verify',
@@ -137,9 +134,30 @@ class _VerifyScreenState extends State<VerifyScreen> {
               ),
             ),
             Text(
-              '$dipInfo',
+              'Diploma: $dipInfo',
               style: TextStyle(fontSize: 24),
             ),
+
+            Container(
+              alignment: Alignment.center,
+              child: Container(
+                width: 300.0,
+                height: 500.0,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30.0),
+                    image: DecorationImage(
+                        image: NetworkImage(
+                          dipUrl,
+                        ),
+                        fit: BoxFit.cover)),
+              ),
+            ),
+            // CircleAvatar(
+            //   radius: 150,
+            //   backgroundImage: NetworkImage(
+            //     dipUrl,
+            //   ),
+            // ),
           ],
         ),
       ),
