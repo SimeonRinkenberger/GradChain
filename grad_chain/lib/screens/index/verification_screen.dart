@@ -60,7 +60,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
           if (description.length > 1) {
             setState(() {
               dipUrl = docSnapshot.data()['diplomaUrl'];
-              dipInfo = docSnapshot.data()['description'];
+              dipInfo = docSnapshot.data()['description'] + 'is verified';
             });
           } else {
             setState(() {
@@ -141,8 +141,8 @@ class _VerifyScreenState extends State<VerifyScreen> {
             Container(
               alignment: Alignment.center,
               child: Container(
-                width: 300.0,
-                height: 500.0,
+                width: 1000.0,
+                height: 1000.0,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30.0),
                     image: DecorationImage(
