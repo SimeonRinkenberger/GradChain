@@ -181,7 +181,7 @@ class _VerifyDipScreenState extends State<VerifyDipScreen> {
                             width: 30,
                           ),
                           ElevatedButton(
-                            onPressed: () => validateDiploma(),
+                            onPressed: () => validateDiploma(''),
                             child: Text('Upload to storage'),
                           ),
                         ]),
