@@ -70,6 +70,8 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:grad_chain/responsive/student/web_screen_layout.dart';
+import 'package:grad_chain/screens/university/uni_home_screen.dart';
 import 'package:grad_chain/widgets/constrants.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -81,6 +83,7 @@ import 'package:grad_chain/utils/utils.dart';
 
 import '../../resources/auth_methods.dart';
 import '../../widgets/text_field_input.dart';
+import '../responsive/university/uni_web_screen.dart';
 
 class DocumentUploader extends StatefulWidget {
   final stuId; //Student's uid
@@ -253,22 +256,34 @@ class _DocumentUploaderState extends State<DocumentUploader> {
 
     return _file == null
         ? Scaffold(
+            appBar: AppBar(
+                backgroundColor: Colors.grey[300],
+                leading: BackButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => UniWebScreen()));
+                  },
+                )),
             body: Center(
-            child: IconButton(
-              icon: const Icon(Icons.upload,
-                  color: Color.fromARGB(255, 78, 78, 78)),
-              onPressed: () => _selectImage(context),
-            ),
-          ))
+              child: IconButton(
+                icon: const Icon(Icons.upload,
+                    color: Color.fromARGB(255, 78, 78, 78)),
+                onPressed: () => _selectImage(context),
+              ),
+            ))
         : Scaffold(
             backgroundColor: Colors.grey[300],
             appBar: AppBar(
               backgroundColor: defaultBackgroundColor,
               leading: IconButton(
-                color: Color.fromARGB(255, 70, 70, 70),
-                icon: const Icon(Icons.arrow_back),
-                onPressed: clearImage,
-              ),
+                  color: Color.fromARGB(255, 70, 70, 70),
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => WebScreenLayout()))),
               title: const Text('Upload diploma for',
                   style: TextStyle(color: Color.fromARGB(255, 75, 75, 75))),
               centerTitle: false,
