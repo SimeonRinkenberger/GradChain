@@ -285,194 +285,194 @@ class _DocumentUploaderState extends State<DocumentUploader> {
 
               //       // START OF SIGNUP FORM
 
-              child: Column(children: [
-                SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    height: MediaQuery.of(context).size.height * 0.10),
-                Row(
-                  children: [
-                    // IconButton(
-                    //   icon: Icon(Icons.upload,
-                    //       color: Color.fromARGB(255, 78, 78, 78)),
-                    //   onPressed: () => _selectImage(context),
-                    // ),
-                    // Text(widget.stuId),
-                    SizedBox(
-                      height: 20,
-                      width: 50,
-                    ),
-                    // Text(widget.Uni),
-                    SizedBox(
-                      height: 20,
-                      width: 50,
-                    ),
-                    Text(
-                      '1. Diploma information',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: Colors.grey[700],
-                        fontSize: 32,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-
-                //       // END OF SIGN UP FORM
-
-                //       // START OF THE DIPLOMA UPLOAD FORM
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // CircleAvatar(
-                    //   backgroundImage: NetworkImage(
-                    //     user.photoUrl,
-                    //   ),
-                    // ),
-
-                    //           // THIS SHOWS THE IMAGE THAT HAS BEEN JUST SELECTED
-                    //           SizedBox(
-                    //             width: MediaQuery.of(context).size.width * 0.1,
-                    //           ),
-                    //           SizedBox(
-                    //             height: 60,
-                    //             width: 60,
-                    //             child: AspectRatio(
-                    //               aspectRatio: 487 / 451,
-                    //               child: Container(
-                    //                 decoration: BoxDecoration(
-                    //                   image: DecorationImage(
-                    //                     image: MemoryImage(_file!),
-                    //                     fit: BoxFit.fill,
-                    //                     alignment: FractionalOffset.topCenter,
-                    //                   ),
-                    //                 ),
-                    //               ),
-                    //             ),
-                    //           ),
-                    //           SizedBox(
-                    //             width: MediaQuery.of(context).size.width * 0.15,
-                    //           ),
-                    //           // This is the description TextBox
-                    Column(children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: MemoryImage(_file!),
-                                fit: BoxFit.fill,
-                                alignment: FractionalOffset.topCenter)),
-                      ),
+              child: Center(
+                child: Column(children: [
+                  SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      height: MediaQuery.of(context).size.height * 0.10),
+                  Row(
+                    children: [
+                      // IconButton(
+                      //   icon: Icon(Icons.upload,
+                      //       color: Color.fromARGB(255, 78, 78, 78)),
+                      //   onPressed: () => _selectImage(context),
+                      // ),
+                      // Text(widget.stuId),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        height: MediaQuery.of(context).size.height * 0.10,
-                        child: TextFieldInput(
-                          textEditingController: _descriptionController,
-                          textInputType: TextInputType.text,
-                          hintText: 'Enter diploma degree',
-                          isPass: false,
+                        height: 20,
+                        width: 50,
+                      ),
+                      // Text(widget.Uni),
+                      SizedBox(
+                        height: 20,
+                        width: 50,
+                      ),
+                      Text(
+                        '1. Diploma information',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Colors.grey[700],
+                          fontSize: 32,
                         ),
                       ),
-                      SizedBox(
-                        height: 80,
-                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
 
-                      TextButton(
-                          onPressed: () =>
-                              postDiploma(widget.stuId, user!.username),
-                          child: const Text(
-                            'Add Diploma',
-                            style: TextStyle(
-                              color: Colors.blueAccent,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
+                  //       // END OF SIGN UP FORM
+
+                  //       // START OF THE DIPLOMA UPLOAD FORM
+                  Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // CircleAvatar(
+                        //   backgroundImage: NetworkImage(
+                        //     user.photoUrl,
+                        //   ),
+                        // ),
+
+                        //           // THIS SHOWS THE IMAGE THAT HAS BEEN JUST SELECTED
+                        //           SizedBox(
+                        //             width: MediaQuery.of(context).size.width * 0.1,
+                        //           ),
+                        //           SizedBox(
+                        //             height: 60,
+                        //             width: 60,
+                        //             child: AspectRatio(
+                        //               aspectRatio: 487 / 451,
+                        //               child: Container(
+                        //                 decoration: BoxDecoration(
+                        //                   image: DecorationImage(
+                        //                     image: MemoryImage(_file!),
+                        //                     fit: BoxFit.fill,
+                        //                     alignment: FractionalOffset.topCenter,
+                        //                   ),
+                        //                 ),
+                        //               ),
+                        //             ),
+                        //           ),
+                        //           SizedBox(
+                        //             width: MediaQuery.of(context).size.width * 0.15,
+                        //           ),
+                        //           // This is the description TextBox
+                        Column(children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: MemoryImage(_file!),
+                                    fit: BoxFit.fill,
+                                    alignment: FractionalOffset.topCenter)),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.4,
+                            height: MediaQuery.of(context).size.height * 0.10,
+                            child: TextFieldInput(
+                              textEditingController: _descriptionController,
+                              textInputType: TextInputType.text,
+                              hintText: 'Enter diploma degree',
+                              isPass: false,
                             ),
-                          )),
+                          ),
+                          SizedBox(
+                            height: 80,
+                          ),
 
-                      Text(widget.stuId),
+                          TextButton(
+                              onPressed: () =>
+                                  postDiploma(widget.stuId, user!.username),
+                              child: const Text(
+                                'Add Diploma',
+                                style: TextStyle(
+                                  color: Colors.blueAccent,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
+                              )),
 
-                      SizedBox(
-                        height: 15,
-                      ),
+                          SizedBox(
+                            height: 15,
+                          ),
 
-                      Text(user!.username),
+                          // Container(decoration: BoxDecoration(
+                          //   image: DecorationImage(
+                          //     image: MemoryImage(_file != null? _file!: ''),
+                          //     fit: BoxFit.fill,
+                          //     alignment: FractionalOffset.topCenter,
+                          //   ),
+                          // ),
+                          //              TextButton(
+                          //                 onPressed: () => signUpStudent(user!.uid, user!.username),
+                          //                 child: const Text(
+                          //                   'Create',
+                          //                   style: TextStyle(
+                          //                     color: Colors.blueAccent,
+                          //                     fontWeight: FontWeight.bold,
+                          //                     fontSize: 20,
+                          //                   ),
+                          //                 ),
+                          //               ),
+                          //               SizedBox(
+                          //                 height: 100,
+                          //               ),
+                          //               // SizedBox(
+                          //               //   width: MediaQuery.of(context).size.width * 0.3,
+                          //               //   height: MediaQuery.of(context).size.height * 0.10,
+                          //               //   child: TextField(
+                          //               //     controller: _descriptionController2,
+                          //               //     decoration: const InputDecoration(
+                          //               //         hintText: 'Write a caption',
+                          //               //         border: InputBorder.none),
+                          //               //     maxLines: 8,
+                          //               //   ),
+                          //               // ),
+                          //               // SizedBox(
+                          //               //   width: MediaQuery.of(context).size.width * 0.3,
+                          //               //   height: MediaQuery.of(context).size.height * 0.10,
+                          //               //   child: TextField(
+                          //               //     controller: _descriptionController3,
+                          //               //     decoration: const InputDecoration(
+                          //               //         hintText: 'Write a caption',
+                          //               //         border: InputBorder.none),
+                          //               //     maxLines: 8,
+                          //               //   ),
+                          //               // ),
+                          //               // SizedBox(
+                          //               //   width: MediaQuery.of(context).size.width * 0.3,
+                          //               //   height: MediaQuery.of(context).size.height * 0.10,
+                          //               //   child: TextField(
+                          //               //     controller: _descriptionController4,
+                          //               //     decoration: const InputDecoration(
+                          //               //         hintText: 'Write a caption',
+                          //               //         border: InputBorder.none),
+                          //               //     maxLines: 8,
+                          //               //   ),
+                          //               // ),
+                          //               // SizedBox(
+                          //               //   width: MediaQuery.of(context).size.width * 0.3,
+                          //               //   height: MediaQuery.of(context).size.height * 0.10,
+                          //               //   child: TextField(
+                          //               //     controller: _descriptionController5,
+                          //               //     decoration: const InputDecoration(
+                          //               //         hintText: 'Write a caption',
+                          //               //         border: InputBorder.none),
+                          //               //     maxLines: 8,
+                          //               //   ),
+                          //               // ),
+                          //             ],
+                          //           ),
 
-                      // Container(decoration: BoxDecoration(
-                      //   image: DecorationImage(
-                      //     image: MemoryImage(_file != null? _file!: ''),
-                      //     fit: BoxFit.fill,
-                      //     alignment: FractionalOffset.topCenter,
-                      //   ),
-                      // ),
-                      //              TextButton(
-                      //                 onPressed: () => signUpStudent(user!.uid, user!.username),
-                      //                 child: const Text(
-                      //                   'Create',
-                      //                   style: TextStyle(
-                      //                     color: Colors.blueAccent,
-                      //                     fontWeight: FontWeight.bold,
-                      //                     fontSize: 20,
-                      //                   ),
-                      //                 ),
-                      //               ),
-                      //               SizedBox(
-                      //                 height: 100,
-                      //               ),
-                      //               // SizedBox(
-                      //               //   width: MediaQuery.of(context).size.width * 0.3,
-                      //               //   height: MediaQuery.of(context).size.height * 0.10,
-                      //               //   child: TextField(
-                      //               //     controller: _descriptionController2,
-                      //               //     decoration: const InputDecoration(
-                      //               //         hintText: 'Write a caption',
-                      //               //         border: InputBorder.none),
-                      //               //     maxLines: 8,
-                      //               //   ),
-                      //               // ),
-                      //               // SizedBox(
-                      //               //   width: MediaQuery.of(context).size.width * 0.3,
-                      //               //   height: MediaQuery.of(context).size.height * 0.10,
-                      //               //   child: TextField(
-                      //               //     controller: _descriptionController3,
-                      //               //     decoration: const InputDecoration(
-                      //               //         hintText: 'Write a caption',
-                      //               //         border: InputBorder.none),
-                      //               //     maxLines: 8,
-                      //               //   ),
-                      //               // ),
-                      //               // SizedBox(
-                      //               //   width: MediaQuery.of(context).size.width * 0.3,
-                      //               //   height: MediaQuery.of(context).size.height * 0.10,
-                      //               //   child: TextField(
-                      //               //     controller: _descriptionController4,
-                      //               //     decoration: const InputDecoration(
-                      //               //         hintText: 'Write a caption',
-                      //               //         border: InputBorder.none),
-                      //               //     maxLines: 8,
-                      //               //   ),
-                      //               // ),
-                      //               // SizedBox(
-                      //               //   width: MediaQuery.of(context).size.width * 0.3,
-                      //               //   height: MediaQuery.of(context).size.height * 0.10,
-                      //               //   child: TextField(
-                      //               //     controller: _descriptionController5,
-                      //               //     decoration: const InputDecoration(
-                      //               //         hintText: 'Write a caption',
-                      //               //         border: InputBorder.none),
-                      //               //     maxLines: 8,
-                      //               //   ),
-                      //               // ),
-                      //             ],
-                      //           ),
-
-                      //           const Divider(),
-                      //         ],
-                    ])
-                  ],
-                ),
-              ]),
+                          //           const Divider(),
+                          //         ],
+                        ])
+                      ],
+                    ),
+                  ),
+                ]),
+              ),
             ));
   }
 }
