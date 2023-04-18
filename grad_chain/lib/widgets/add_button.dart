@@ -300,49 +300,50 @@ class _DocumentUploaderState extends State<DocumentUploader> {
 
               //       // START OF SIGNUP FORM
 
-              child: Center(
-                child: Column(children: [
-                  SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      height: MediaQuery.of(context).size.height * 0.10),
-                  Row(
-                    children: [
-                      // IconButton(
-                      //   icon: Icon(Icons.upload,
-                      //       color: Color.fromARGB(255, 78, 78, 78)),
-                      //   onPressed: () => _selectImage(context),
-                      // ),
-                      // Text(widget.stuId),
-                      SizedBox(
-                        height: 20,
-                        width: 50,
-                      ),
-                      // Text(widget.Uni),
-                      SizedBox(
-                        height: 20,
-                        width: 50,
-                      ),
-                      Text(
-                        '1. Diploma information',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          color: Colors.grey[700],
-                          fontSize: 32,
+              child: Column(
+                  //mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        height: MediaQuery.of(context).size.height * 0.10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // IconButton(
+                        //   icon: Icon(Icons.upload,
+                        //       color: Color.fromARGB(255, 78, 78, 78)),
+                        //   onPressed: () => _selectImage(context),
+                        // ),
+                        // Text(widget.stuId),
+                        SizedBox(
+                          height: 20,
+                          width: 50,
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
+                        // Text(widget.Uni),
+                        SizedBox(
+                          height: 20,
+                          width: 50,
+                        ),
+                        Text(
+                          'Diploma information',
+                          style: TextStyle(
+                            color: Colors.grey[700],
+                            fontSize: 32,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
 
-                  //       // END OF SIGN UP FORM
+                    //       // END OF SIGN UP FORM
 
-                  //       // START OF THE DIPLOMA UPLOAD FORM
-                  Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    //       // START OF THE DIPLOMA UPLOAD FORM
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      //mainAxisAlignment: MainAxisAlignment.start,
+                      //crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // CircleAvatar(
                         //   backgroundImage: NetworkImage(
@@ -485,9 +486,7 @@ class _DocumentUploaderState extends State<DocumentUploader> {
                         ])
                       ],
                     ),
-                  ),
-                ]),
-              ),
+                  ]),
             ));
   }
 }
