@@ -145,6 +145,12 @@ class _AddDiplomaScreenState extends State<AddDiplomaScreen> {
     });
   }
 
+  void addDiplomaToExisting(String uniId, String university) async {
+    setState(() {
+      _isLoading = true;
+    });
+  }
+
   @override
   void dispose() {
     // TODO: implement dispose
